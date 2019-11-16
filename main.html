@@ -6,5 +6,20 @@
 </head>
 <body>
 
+<script>
+    function generateButton(upper_bound){
+        let char = 65;
+        for(let i = char; i < (char + upper_bound); i++)
+        {
+            let btn = document.createElement("Button");
+            btn.innerHTML= String.fromCharCode(i);
+            document.body.appendChild(btn);
+            btn.onclick= function(){console.log("Button "+ String.fromCharCode(i)+" was clicked")};
+        }
+    }
+
+    generateButton(26);
+</script>
+
 </body>
 </html>
