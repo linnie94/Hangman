@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <p>DEFINITION</p>
+    <p>DEFINITION(HINT)</p>
     <p id="wordDefID"></p>
 
     <p>ANSWER(TESTING)</p>
@@ -16,8 +16,11 @@
     <p>ANSWER(Chr Ver)</p>
     <p id="answerChrID"></p>
 
-    <p>SCORE</p>
-    <p id="scoreID"></p>
+    <p>LIFE</p>
+    <p id="lifeID">7</p>
+
+    <p>YOUR GUESS</p>
+    <p id="guessID">YOUR GUESS?</p>
 
     <script>
         // for the testing purpose, only 4 words in the array.
@@ -26,25 +29,37 @@
         let committee = "a group of people chosen to do a particular job, make decisions"
         let system = "a group of related parts that work together as a whole for a particular purpose"
 
-        let arrayOfAnswers = ["tattoo", "electricity", "committee", "system"];
+        let arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
         let arrayOfDefs = [tattoo, electricity, committee, system];
         let answerChr = [];
 
         let arrayOfGuesses = [];
+        let userGuess = "";
 
         let lives = 7;
-        let score = 0;
 
-        function generateButton(upper_bound) {
-            let char = 65;
-            for (let i = char; i < (char + upper_bound); i++) {
+        function generateButton() {
+            let temp = disPlayDefinition();
+            let temp2 = AnswerChrLeng(temp)
+            for (let i = 0; i < 26; i++) {
                 let btn = document.createElement("Button");
-                btn.innerHTML = String.fromCharCode(i);
+                btn.id = `${i}`;
+                // console.log(btn.id);
+                btn.innerHTML = String.fromCharCode(i + 65);
                 document.body.appendChild(btn);
-                btn.onclick = function () { console.log("Button " + String.fromCharCode(i) + " was clicked") };
+                console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
+                btn.onclick = function () {
+                    for (let j = 0; j < 26; j++) {
+                        if (btn.id == j) {
+                            arrayOfGuesses.push(String.fromCharCode(j + 65));
+                            btn.style.visibility = "hidden";
+                        }
+                    }
+                    guess(temp2);
+                    document.getElementById("guessID").innerHTML = arrayOfGuesses;
+                }
             }
         }
-
 
         function disPlayDefinition() {
             let i = Math.floor(Math.random() * 4);  // i: 0~3 for the testing purpose
@@ -54,34 +69,45 @@
         }
 
 
-        function countAnswerNum(i) {
+        function AnswerChrLeng(i) {
             for (let j = 0; j < arrayOfAnswers[i].length; j++) {
                 answerChr[j] = arrayOfAnswers[i][j];
                 // console.log(answerChr);
             }
             document.getElementById("answerChrID").innerHTML = answerChr;
-            console.log(answerChr);
+            return answerChr;  // answerChr --> list
         }
 
 
-        function guess() {
-            
+        function guess(answerChr) {  // answerChr ---> list
+            for (let i = 0; i < answerChr.length; i++) {
+                if (arrayOfGuesses[i] == answerChr[i]) {
+                    console.log(arrayOfGuesses[i]);
+                    console.log(answerChr[i]);
+                    earnScore();
+                    break;
+                }
+                else {
+                    console.log(arrayOfGuesses[i]);
+                    console.log(answerChr[i]);
+                    loseScore();
+                    break;
+                }
+            }
         }
 
 
         function earnScore() {
-            document.getElementById("scoreID").innerHTML = ++score;
+            document.getElementById("lifeID").innerHTML = ++lives;
         }
-        
 
+        function loseScore() {
+            document.getElementById("lifeID").innerHTML = --lives;
+        }
 
         function main() {
-            generateButton(26);
-            let i = disPlayDefinition();
-            countAnswerNum(i);
-            // earnScore();
+            generateButton();
         }
-
 
         main();
 
