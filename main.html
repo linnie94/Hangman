@@ -42,23 +42,30 @@
             let temp = disPlayDefinition();
             let temp2 = AnswerChrLeng(temp)
             for (let i = 0; i < 26; i++) {
-                let btn = document.createElement("Button");
-                btn.id = `${i}`;
-                // console.log(btn.id);
-                btn.innerHTML = String.fromCharCode(i + 65);
-                document.body.appendChild(btn);
-                console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
-                btn.onclick = function () {
+                let creadtedButton = new Button(i)
+                creadtedButton.btn.innerHTML = String.fromCharCode(i + 65);
+                // console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
+                creadtedButton.btn.onclick = function () {
                     for (let j = 0; j < 26; j++) {
-                        if (btn.id == j) {
+                        if (creadtedButton.btn.id == j) {
                             arrayOfGuesses.push(String.fromCharCode(j + 65));
-                            btn.style.visibility = "hidden";
+                            creadtedButton.btn.style.visibility = "hidden";
                         }
                     }
                     guess(temp2);
                     document.getElementById("guessID").innerHTML = arrayOfGuesses;
+                    gameOver();
                 }
             }
+        }
+
+        function Button(id) {
+            this.id = id;
+            this.btn = document.createElement("button");
+            this.btn.id = `${this.id}`;
+            this.btn.style.width = "50px";
+            this.btn.style.height = "50px";
+            document.body.appendChild(this.btn);
         }
 
         function disPlayDefinition() {
@@ -78,19 +85,21 @@
             return answerChr;  // answerChr --> list
         }
 
-
+        let guessCount = 0;
         function guess(answerChr) {  // answerChr ---> list
             for (let i = 0; i < answerChr.length; i++) {
-                if (arrayOfGuesses[i] == answerChr[i]) {
-                    console.log(arrayOfGuesses[i]);
-                    console.log(answerChr[i]);
+                if (arrayOfGuesses[guessCount] === answerChr[i]) {
+                    console.log(arrayOfGuesses)
+                    console.log(arrayOfGuesses[guessCount])
                     earnScore();
+                    guessCount++;
                     break;
                 }
                 else {
-                    console.log(arrayOfGuesses[i]);
-                    console.log(answerChr[i]);
+                    console.log(arrayOfGuesses)
+                    console.log(arrayOfGuesses[guessCount])
                     loseScore();
+                    guessCount++;
                     break;
                 }
             }
@@ -104,6 +113,18 @@
         function loseScore() {
             document.getElementById("lifeID").innerHTML = --lives;
         }
+
+        function gameOver() {
+            if (lives == 0) {
+                document.getElementById("guessID").innerHTML = "Game Over! " + prompt("Please enter your name.") + ", your score is " + lives + ".";
+            }
+        }
+        
+        
+        // function restart() {
+
+        // }
+
 
         function main() {
             generateButton();
