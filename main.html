@@ -9,12 +9,16 @@
 <body>
     <p>DEFINITION(HINT)</p>
     <p id="wordDefID"></p>
+    <!-- Todo: create button to give the player option -->
 
     <p>ANSWER(TESTING)</p>
     <p id="answerID"></p>
+    <!-- Todo: cover -->
+
 
     <p>ANSWER(Chr Ver)</p>
     <p id="answerChrID"></p>
+    <!-- todo: this is for checking only-->
 
     <p>LIFE</p>
     <p id="lifeID">7</p>
@@ -24,10 +28,11 @@
 
     <script>
         // for the testing purpose, only 4 words in the array.
+        // hint
         let tattoo = "a form of body modification where a design is made by inserting ink";
-        let electricity = "the set of physical phenomena associated with the presence and motion of electric charge"
-        let committee = "a group of people chosen to do a particular job, make decisions"
-        let system = "a group of related parts that work together as a whole for a particular purpose"
+        let electricity = "the set of physical phenomena associated with the presence and motion of electric charge";
+        let committee = "a group of people chosen to do a particular job, make decisions";
+        let system = "a group of related parts that work together as a whole for a particular purpose";
 
         let arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
         let arrayOfDefs = [tattoo, electricity, committee, system];
@@ -40,21 +45,23 @@
 
         function generateButton() {
             let temp = disPlayDefinition();
-            let temp2 = AnswerChrLeng(temp)
+            let temp2 = AnswerChrLeng(temp);
             for (let i = 0; i < 26; i++) {
-                let creadtedButton = new Button(i)
-                creadtedButton.btn.innerHTML = String.fromCharCode(i + 65);
+                let createdButton = new Button(i);
+                createdButton.btn.innerHTML = String.fromCharCode(i + 65);
                 // console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
-                creadtedButton.btn.onclick = function () {
+                createdButton.btn.onclick = function () {
                     for (let j = 0; j < 26; j++) {
-                        if (creadtedButton.btn.id == j) {
+                        if (createdButton.id === j) {
                             arrayOfGuesses.push(String.fromCharCode(j + 65));
-                            creadtedButton.btn.style.visibility = "hidden";
+                            createdButton.btn.style.visibility = "hidden";
                         }
                     }
                     guess(temp2);
+                    // Todo: make sure the button clicked counts for reoccurring letters
                     document.getElementById("guessID").innerHTML = arrayOfGuesses;
                     gameOver();
+
                 }
             }
         }
@@ -62,7 +69,7 @@
         function Button(id) {
             this.id = id;
             this.btn = document.createElement("button");
-            this.btn.id = `${this.id}`;
+            // this.btn.id = `${this.id}`;
             this.btn.style.width = "50px";
             this.btn.style.height = "50px";
             document.body.appendChild(this.btn);
@@ -77,6 +84,10 @@
 
 
         function AnswerChrLeng(i) {
+            // Todo: utilize this and use it as popping all the char that was clicked
+            // example: this function returns array [T, a, T, t, o, o ]
+            // if t is clicked ever single time each letter is encountered
+            // pop the letter/char and if we are utilizing score function increment the score
             for (let j = 0; j < arrayOfAnswers[i].length; j++) {
                 answerChr[j] = arrayOfAnswers[i][j];
                 // console.log(answerChr);
@@ -89,15 +100,15 @@
         function guess(answerChr) {  // answerChr ---> list
             for (let i = 0; i < answerChr.length; i++) {
                 if (arrayOfGuesses[guessCount] === answerChr[i]) {
-                    console.log(arrayOfGuesses)
-                    console.log(arrayOfGuesses[guessCount])
+                    console.log(arrayOfGuesses);
+                    console.log(arrayOfGuesses[guessCount]);
                     earnScore();
                     guessCount++;
                     break;
                 }
                 else {
-                    console.log(arrayOfGuesses)
-                    console.log(arrayOfGuesses[guessCount])
+                    console.log(arrayOfGuesses);
+                    console.log(arrayOfGuesses[guessCount]);
                     loseScore();
                     guessCount++;
                     break;
@@ -110,17 +121,21 @@
             document.getElementById("lifeID").innerHTML = ++lives;
         }
 
+
         function loseScore() {
             document.getElementById("lifeID").innerHTML = --lives;
         }
+
 
         function gameOver() {
             if (lives == 0) {
                 document.getElementById("guessID").innerHTML = "Game Over! " + prompt("Please enter your name.") + ", your score is " + lives + ".";
             }
         }
-        
-        
+
+        // TODO: reset button
+        // TODO: let boundary for score - make sure it doesn't go down below zero
+
         // function restart() {
 
         // }
