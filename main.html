@@ -43,28 +43,74 @@
 
         let lives = 7;
 
-        function generateButton() {
-            let temp = disPlayDefinition();
-            let temp2 = AnswerChrLeng(temp);
-            for (let i = 0; i < 26; i++) {
-                let createdButton = new Button(i);
-                createdButton.btn.innerHTML = String.fromCharCode(i + 65);
-                // console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
-                createdButton.btn.onclick = function () {
-                    for (let j = 0; j < 26; j++) {
-                        if (createdButton.id === j) {
-                            arrayOfGuesses.push(String.fromCharCode(j + 65));
-                            createdButton.btn.style.visibility = "hidden";
-                        }
-                    }
-                    guess(temp2);
-                    // Todo: make sure the button clicked counts for reoccurring letters
-                    document.getElementById("guessID").innerHTML = arrayOfGuesses;
-                    gameOver();
+        function alpha() {
+            // This is used to the alphabet
+            let alphabet = [];
+            for (let i = 65; i < 91; i++) {
+                alphabet.push(String.fromCharCode(i));
+            };
+            return alphabet;
+            // Return a list of capital letters from A - Z
+        }
 
-                }
+        
+
+
+        function generateButton() {
+            // This is used to create buttons for every letter of the alphabet
+            let letters = alpha()
+            for (let i = 0; i < 26; i++) {
+                let button = new Button(i)
+                // Create a button in an object constructor
+                button.btn.innerHTML = letters[i];
+                // Assign the innerHTML with the letter in letters with index i
+                // 0 = A, 1 = B, 2 = C, etc...
+
+
+                button.btn.addEventListener("click", function () {
+                    // Add an event to the button once it is made.
+
+                    // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
+                    // The event will print everytime it is clicked.
+
+                    checkDummyWord(button.btn.innerHTML);
+                })
             }
         }
+
+        function checkDummyWord(letter){
+            let dummyWord = "BUSINESS";
+            // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
+            if (dummyWord.includes(letter)){
+                // This checks the letter, but it also checks whether is it capitalized or not.
+                console.log("That was the right letter.");
+            } else{
+                console.log(">:) That was incorrect.");
+            };
+        }
+
+        // function generateButton() {
+        //     let temp = disPlayDefinition();
+        //     let temp2 = AnswerChrLeng(temp);
+        //     for (let i = 0; i < 26; i++) {
+        //         let createdButton = new Button(i);
+        //         createdButton.btn.innerHTML = String.fromCharCode(i + 65);
+        //         // console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
+        //         createdButton.btn.onclick = function () {
+        //             for (let j = 0; j < 26; j++) {
+        //                 if (createdButton.id === j) {
+        //                     arrayOfGuesses.push(String.fromCharCode(j + 65));
+        //                     createdButton.btn.style.visibility = "hidden";
+        //                 }
+        //             }
+        //             guess(temp2);
+        //             // Todo: make sure the button clicked counts for reoccurring letters
+        //             document.getElementById("guessID").innerHTML = arrayOfGuesses;
+        //             gameOver();
+
+        //         }
+        //     }
+        // }
 
         function Button(id) {
             this.id = id;
@@ -96,10 +142,33 @@
             return answerChr;  // answerChr --> list
         }
 
+        // let guessCount = 0;
+        // function guess(answerChr) {  // answerChr ---> list
+        //     for (let i = 0; i < answerChr.length; i++) {
+        //         if (arrayOfGuesses[guessCount] === answerChr[i]) {
+        //             console.log(arrayOfGuesses);
+        //             console.log(arrayOfGuesses[guessCount]);
+        //             earnScore();
+        //             guessCount++;
+        //             break;
+        //         }
+        //         else {
+        //             console.log(arrayOfGuesses);
+        //             console.log(arrayOfGuesses[guessCount]);
+        //             loseScore();
+        //             guessCount++;
+        //             break;
+        //         }
+        //     }
+        // }
+
+
+        // This is a copy of the code above
         let guessCount = 0;
         function guess(answerChr) {  // answerChr ---> list
             for (let i = 0; i < answerChr.length; i++) {
                 if (arrayOfGuesses[guessCount] === answerChr[i]) {
+                    // You can just use str.includes("word") to see if the letter is in the word or not.
                     console.log(arrayOfGuesses);
                     console.log(arrayOfGuesses[guessCount]);
                     earnScore();
