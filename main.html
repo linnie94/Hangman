@@ -4,12 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Hangman</title>
+
 </head>
 
 <body>
     <p>DEFINITION(HINT)</p>
-    <p id="wordDefID"></p>
-    <!-- Todo: create button to give the player option -->
+    <p id="wordDefID" style="display: none"></p>
+    <button id="toggle" onclick=animate_toggle()>Hint!</button>
+    <script>
+        function animate_toggle(){
+          let x = document.getElementById("wordDefID");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          }
+          else{
+              x.style.display = "none";
+          }
+        }
+    </script>
+
 
     <p>ANSWER(TESTING)</p>
     <p id="answerID"></p>
@@ -48,19 +61,18 @@
             let alphabet = [];
             for (let i = 65; i < 91; i++) {
                 alphabet.push(String.fromCharCode(i));
-            };
+            }
             return alphabet;
             // Return a list of capital letters from A - Z
         }
 
-        
-
 
         function generateButton() {
+            document.getElementById('wordDefID').innerHTML = "these people are often associated with being a snake";
             // This is used to create buttons for every letter of the alphabet
-            let letters = alpha()
+            let letters = alpha();
             for (let i = 0; i < 26; i++) {
-                let button = new Button(i)
+                let button = new Button(i);
                 // Create a button in an object constructor
                 button.btn.innerHTML = letters[i];
                 // Assign the innerHTML with the letter in letters with index i
@@ -86,7 +98,7 @@
                 console.log("That was the right letter.");
             } else{
                 console.log(">:) That was incorrect.");
-            };
+            }
         }
 
         // function generateButton() {
@@ -166,7 +178,7 @@
         // This is a copy of the code above
         let guessCount = 0;
         function guess(answerChr) {  // answerChr ---> list
-            for (let i = 0; i < answerChr.length; i++) {
+            for(let i = 0; i < answerChr.length; i++) {
                 if (arrayOfGuesses[guessCount] === answerChr[i]) {
                     // You can just use str.includes("word") to see if the letter is in the word or not.
                     console.log(arrayOfGuesses);
@@ -187,17 +199,19 @@
 
 
         function earnScore() {
-            document.getElementById("lifeID").innerHTML = ++lives;
+            lives += lives;
+            document.getElementById("lifeID").innerHTML = lives;
         }
 
 
         function loseScore() {
-            document.getElementById("lifeID").innerHTML = --lives;
+            lives -= lives;
+            document.getElementById("lifeID").innerHTML = lives;
         }
 
 
         function gameOver() {
-            if (lives == 0) {
+            if (lives === 0) {
                 document.getElementById("guessID").innerHTML = "Game Over! " + prompt("Please enter your name.") + ", your score is " + lives + ".";
             }
         }
