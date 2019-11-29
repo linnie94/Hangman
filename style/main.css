@@ -3,14 +3,20 @@
     height: 50px;
 }
 
-@media screen and (max-width:600px)
-    {
+@media screen and (max-width:600px) {
     /*#answerSpace{*/
     /*    font-size: 3rem;*/
     /*}*/
     .btns{
         width: 8em;
         height: 8em;
+    }
+}
+
+
+@media screen and (min-width:400px) {
+    body {
+        font-family: Georgia, 'Times New Roman', Times, serif;
     }
 }
 
