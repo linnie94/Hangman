@@ -183,9 +183,12 @@
             // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
 
             if (!generatedAnswer.includes(letter)) {
-                console.log(">:) That was incorrect.");
                 // This checks the letter, but it also checks whether is it capitalized or not.
-                lives -= 1;
+                console.log(">:) That was incorrect.");
+    
+                // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
+                subtractLife();
+                // Run this function to decrease the amount of lives the user has left.
             } else {
                 console.log("That was the right letter.");
                 
@@ -245,6 +248,7 @@
 
 
         function subtractLife() {
+            // If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
             lives -= 1;
             // Subtract lives by 1
             document.getElementById("lifeID").innerHTML = lives;
