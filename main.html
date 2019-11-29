@@ -39,7 +39,7 @@
     <p id="lifeID">7</p>
 
     <p>YOUR GUESS</p>
-    <p id="guessID">YOUR GUESS?</p>
+    <p id="guessID"></p>
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -172,7 +172,7 @@
                     // Once the button is clicked on we
 
 
-
+                    displayGuesses()
 
 
                     gameOver();
@@ -204,7 +204,15 @@
             }
         }
 
+        function displayGuesses() {
+            // makes the lines for the word
+            let displayGuess = arrayOfGuesses[0]
+            for (let i = 1; i < arrayOfGuesses.length; i++) {
 
+                let guess = document.getElementById("guessID")
+                guess.innerHTML = displayGuess + ", " + arrayOfGuesses[i]
+            }
+        }
 
 
         function Button(alphaLetter) {
