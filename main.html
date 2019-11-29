@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hangman</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
@@ -235,16 +236,20 @@
             // The argument is the letter of this button. 
             this.btn = document.createElement("button");
             this.btn.id = alphaLetter;
+            this.btn.classList.add("btns");
             // The id of this button will be the same as the letter it represents.
-            this.btn.style.width = "50px";
-            this.btn.style.height = "50px";
+            // this.btn.style.width = "50px";
+            // this.btn.style.height = "50px";
+            this.btn.style.margin = '0.5em';
             this.btn.innerHTML = alphaLetter;
             // Adjust the innerHTML so that is represents the letter this button was given.
 
             let area = document.getElementById("buttons");
             area.appendChild(this.btn);
         }
-
+            // var x = window.matchMedia("(max-width: 700px)")
+            // myFunction(x) // Call listener function at run time
+            // x.addListener(myFunction) // Attach listener function on state changes
 
         function disPlayDefinition() {
             // This is supposed the choose a random word.
