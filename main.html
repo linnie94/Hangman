@@ -71,18 +71,21 @@
         // randomly picks a word from choices
         let generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
         let answerArray = [];
+
+
         function changeDefinition(generatedAnswer) {
             console.log(generatedAnswer);
             console.log(arrayOfDefs[generatedAnswer]);
             // changes the definition based on the word
             document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
 
+
         }
 
         // sets up the lines for the word
-        function wordSpace(word) {
+        function wordSpace(answer) {
             // makes the lines for the word
-            for (let i = 0; i < word.length; i++) {
+            for (let i = 0; i < answer.length; i++) {
                 answerArray[i] = " " + "_";
                 let guess = document.getElementById("guesses")
                 guess.append(answerArray[i])
@@ -91,14 +94,14 @@
 
         // fills the word slots if letter correct
         function fillWords(guess) {
-            for (let i = 0; i < word.length; i++) {
-                if (word[i] == guess) {
+            for (let i = 0; i < generatedAnswer.length; i++) {
+                if (generatedAnswer[i] == guess) {
                     answerArray[i] = guess;
                 }
             }
             // Redisplays the word lines with letters
             let wordDisplay = ""
-            for (let i = 0; i < word.length; i++) {
+            for (let i = 0; i < generatedAnswer.length; i++) {
                 wordDisplay += " " + answerArray[i];
                 document.getElementById("guesses").innerHTML = wordDisplay;
             }
@@ -148,7 +151,7 @@
                     checkDummyWord(button.btn.innerHTML);
 
                     // Count the number of the same letters between answer and guess
-                    let numOfSameLetter = countSameLetter(word, button.btn.innerHTML);
+                    let numOfSameLetter = countSameLetter(generatedAnswer, button.btn.innerHTML);
                     if (!(fillWords(button.btn.innerHTML)) == true) {
                         // raise scores by the numOfSameLetter
                         earnScore(numOfSameLetter);
@@ -162,7 +165,7 @@
         function checkDummyWord(letter) {
             // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
             document.getElementById(letter).style.visibility = "hidden";
-            if (word.includes(letter)) {
+            if (generatedAnswer.includes(letter)) {
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log("That was the right letter.");
             } else {
@@ -170,28 +173,6 @@
             }
         }
 
-        // function generateButton() {
-        //     let temp = disPlayDefinition();
-        //     let temp2 = AnswerChrLeng(temp);
-        //     for (let i = 0; i < 26; i++) {
-        //         let createdButton = new Button(i);
-        //         createdButton.btn.innerHTML = String.fromCharCode(i + 65);
-        //         // console.log("AnswerChrLeng(temp) : " + temp2); // ---> return list
-        //         createdButton.btn.onclick = function () {
-        //             for (let j = 0; j < 26; j++) {
-        //                 if (createdButton.id === j) {
-        //                     arrayOfGuesses.push(String.fromCharCode(j + 65));
-        //                     createdButton.btn.style.visibility = "hidden";
-        //                 }
-        //             }
-        //             guess(temp2);
-        //             // Todo: make sure the button clicked counts for reoccurring letters
-        //             document.getElementById("guessID").innerHTML = arrayOfGuesses;
-        //             gameOver();
-
-        //         }
-        //     }
-        // }
 
         function Button(id) {
             this.id = id;
@@ -215,18 +196,18 @@
         }
 
 
-        function AnswerChrLeng(i) {
-            // Todo: utilize this and use it as popping all the char that was clicked
-            // example: this function returns array [T, a, T, t, o, o ]
-            // if t is clicked ever single time each letter is encountered
-            // pop the letter/char and if we are utilizing score function increment the score
-            for (let j = 0; j < arrayOfAnswers[i].length; j++) {
-                answerChr[j] = arrayOfAnswers[i][j];
-                // console.log(answerChr);
-            }
-            document.getElementById("answerChrID").innerHTML = answerChr;
-            return answerChr;  // answerChr --> list
-        }
+        // function AnswerChrLeng(i) {
+        //     // Todo: utilize this and use it as popping all the char that was clicked
+        //     // example: this function returns array [T, a, T, t, o, o ]
+        //     // if t is clicked ever single time each letter is encountered
+        //     // pop the letter/char and if we are utilizing score function increment the score
+        //     for (let j = 0; j < arrayOfAnswers[i].length; j++) {
+        //         answerChr[j] = arrayOfAnswers[i][j];
+        //         // console.log(answerChr);
+        //     }
+        //     document.getElementById("answerChrID").innerHTML = answerChr;
+        //     return answerChr;  // answerChr --> list
+        // }
 
 
 
@@ -259,9 +240,9 @@
 
         function main() {
             generateButton();
-            changeDefinition(word);
-            wordSpace(word);
-            fillWords(word);
+            changeDefinition(generatedAnswer);
+            wordSpace(generatedAnswer);
+            // fillWords(generatedAnswer);
         }
 
         main();
