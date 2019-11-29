@@ -12,14 +12,14 @@
     <p id="wordDefID" style="display: none"></p>
     <button id="toggle" onclick=animate_toggle()>Hint!</button>
     <script>
-        function animate_toggle(){
-          let x = document.getElementById("wordDefID");
-          if (x.style.display === "none") {
-              x.style.display = "block";
-          }
-          else{
-              x.style.display = "none";
-          }
+        function animate_toggle() {
+            let x = document.getElementById("wordDefID");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
         }
     </script>
 
@@ -43,17 +43,19 @@
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
-    <div id = "buttons">
-    <br>
+    <div id="buttons">
+        <br>
     </div>
 
     <script>
         // for the testing purpose, only 4 words in the array.
         // hint
-        let arrayOfDefs = {"TATTOO":"a form of body modification where a design is made by inserting ink",
-            "ELECTRICITY":"the set of physical phenomena associated with the presence and motion of electric charge",
-            "COMMITTEE":"a group of people chosen to do a particular job, make decisions",
-            "SYSTEM":"a group of related parts that work together as a whole for a particular purpose"}
+        let arrayOfDefs = {
+            "TATTOO": "a form of body modification where a design is made by inserting ink",
+            "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
+            "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
+            "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
+        }
         let arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
 
         let answerChr = [];
@@ -72,33 +74,44 @@
             document.getElementById("wordDefID").innerHTML = arrayOfDefs[word];
 
         }
+
         // sets up the lines for the word
-        function wordSpace(word){
+        function wordSpace(word) {
             // makes the lines for the word
-            for (let i =0; i < word.length; i++){
-                answerArray[i] = " "+"_";
+            for (let i = 0; i < word.length; i++) {
+                answerArray[i] = " " + "_";
                 let guess = document.getElementById("guesses")
                 guess.append(answerArray[i])
             }
         }
+
         // fills the word slots if letter correct
-        function fillWords(guess){
-            for (let i =0; i < word.length; i++){
-                if (word[i] == guess){
+        function fillWords(guess) {
+            for (let i = 0; i < word.length; i++) {
+                if (word[i] == guess) {
                     answerArray[i] = guess;
                 }
-
             }
             // Redisplays the word lines with letters
             let wordDisplay = ""
-            for (let i =0; i < word.length; i++){
+            for (let i = 0; i < word.length; i++) {
                 wordDisplay += " " + answerArray[i];
                 document.getElementById("guesses").innerHTML = wordDisplay;
-
-
             }
-
         }
+
+        
+        function countSameLetter(word, guess) {
+            let sameChrCounter = 0;
+            for (let i = 0; i < word.length; i++) {
+                if(word[i] == guess) {
+                    sameChrCounter ++;
+                }
+            }
+            console.log(sameChrCounter);
+        }
+
+
         function alpha() {
             // This is used to the alphabet
             let alphabet = [];
@@ -109,8 +122,7 @@
             // Return a list of capital letters from A - Z
         }
 
-
-        function generateButton(){
+        function generateButton() {
             // This is used to create buttons for every letter of the alphabet
             let letters = alpha();
             for (let i = 0; i < 26; i++) {
@@ -121,30 +133,25 @@
                 button.btn.id = letters[i];
                 // Assign the innerHTML with the letter in letters with index i
                 // 0 = A, 1 = B, 2 = C, etc...
-
-
                 button.btn.addEventListener("click", function () {
                     // Add an event to the button once it is made.
-
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
                     // The event will print every time it is clicked.
                     checkDummyWord(button.btn.innerHTML);
                     fillWords(button.btn.innerHTML);
+                    countSameLetter(word, button.btn.innerHTML);
                 })
             }
         }
 
-        function checkDummyWord(letter){
+        function checkDummyWord(letter) {
             // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
-            if (word.includes(letter)){
+            document.getElementById(letter).style.visibility = "hidden";
+            if (word.includes(letter)) {
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log("That was the right letter.");
-                // removes the button
-                document.getElementById(letter).style.visibility = "hidden";
-            } else{
+            } else {
                 console.log(">:) That was incorrect.");
-                // removes the button
-                document.getElementById(letter).style.visibility = "hidden";
             }
         }
 
@@ -226,7 +233,7 @@
         // This is a copy of the code above
         let guessCount = 0;
         function guess(answerChr) {  // answerChr ---> list
-            for(let i = 0; i < answerChr.length; i++) {
+            for (let i = 0; i < answerChr.length; i++) {
                 if (arrayOfGuesses[guessCount] === answerChr[i]) {
                     // You can just use str.includes("word") to see if the letter is in the word or not.
                     console.log(arrayOfGuesses);
@@ -247,14 +254,12 @@
 
 
         function earnScore() {
-            lives += lives;
-            document.getElementById("lifeID").innerHTML = lives;
+            document.getElementById("lifeID").innerHTML = ++lives;
         }
 
 
         function loseScore() {
-            lives -= lives;
-            document.getElementById("lifeID").innerHTML = lives;
+            document.getElementById("lifeID").innerHTML = --lives;
         }
 
 
