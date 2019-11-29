@@ -78,6 +78,7 @@
         let generatedAnswer;
         let answerArray;
 
+        const letters = alpha();
 
         function animate_toggle() {
             let x = document.getElementById("wordDefID");
@@ -153,11 +154,11 @@
         }
 
         function generateButton() {
-            // letters is a list of the entire alphabet,
-            let letters = alpha();
 
             for (let i = 0; i < 26; i++) {
                 // We are looping from 0 to 26 because we want to add every button the html page.
+            // letters is a list of the entire alphabet; global variable
+
                 let buttonLetter = letters[i];
 
                 let button = new Button(buttonLetter);
@@ -314,18 +315,23 @@
 
 
         function gameOver() {
-            let letters = alpha();
             if (lives === 0) {
-                let endGameUserInfo = prompt("Please enter your name.") + ", your score is " + score + ".";
+                let endGameUserInfo = prompt("Please enter your name.", "username") + ", your score is " + score + ".";
                 document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
 
-
-                for (let i = 0; i < 26; i++) {
-                    document.getElementById(letters[i]).disabled = true;
-                }
+                disableButtons();
+                
             }
 
 
+        }
+
+        function disableButtons(){
+            // Function to disable all buttons. 
+            for (let i = 0; i < 26; i++) {
+                // letters is an array of the alphabet
+                    document.getElementById(letters[i]).disabled = true;
+                }
         }
 
 
