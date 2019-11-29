@@ -1,0 +1,12 @@
+#guesses{
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+}
+.guessArea{
+    width: 100%;
+}
+
+#buttons{
+    text-align: center;
+}

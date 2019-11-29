@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hangman</title>
-
+    <link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
 
 <body>
@@ -40,6 +40,12 @@
 
     <p>YOUR GUESS</p>
     <p id="guessID">YOUR GUESS?</p>
+    <div class="guessArea">
+        <p id="guesses"></p>
+    </div>
+    <div id = "buttons">
+    <br>
+    </div>
 
     <script>
         // for the testing purpose, only 4 words in the array.
@@ -58,6 +64,7 @@
 
         // randomly picks a word from choices
         let word = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
+        let answerArray = [];
         function changeDefinition(word) {
             console.log(word);
             console.log(arrayOfDefs[word]);
@@ -65,7 +72,33 @@
             document.getElementById("wordDefID").innerHTML = arrayOfDefs[word];
 
         }
+        // sets up the lines for the word
+        function wordSpace(word){
+            // makes the lines for the word
+            for (let i =0; i < word.length; i++){
+                answerArray[i] = " "+"_";
+                let guess = document.getElementById("guesses")
+                guess.append(answerArray[i])
+            }
+        }
+        // fills the word slots if letter correct
+        function fillWords(guess){
+            for (let i =0; i < word.length; i++){
+                if (word[i] == guess){
+                    answerArray[i] = guess;
+                }
 
+            }
+            // Redisplays the word lines with letters
+            let wordDisplay = ""
+            for (let i =0; i < word.length; i++){
+                wordDisplay += " " + answerArray[i];
+                document.getElementById("guesses").innerHTML = wordDisplay;
+
+
+            }
+
+        }
         function alpha() {
             // This is used to the alphabet
             let alphabet = [];
@@ -96,14 +129,14 @@
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
                     // The event will print every time it is clicked.
                     checkDummyWord(button.btn.innerHTML);
+                    fillWords(button.btn.innerHTML);
                 })
             }
         }
 
         function checkDummyWord(letter){
-            let dummyWord = "BUSINESS";
             // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
-            if (dummyWord.includes(letter)){
+            if (word.includes(letter)){
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log("That was the right letter.");
                 // removes the button
@@ -144,7 +177,8 @@
             // this.btn.id = `${this.id}`;
             this.btn.style.width = "50px";
             this.btn.style.height = "50px";
-            document.body.appendChild(this.btn);
+            let area = document.getElementById("buttons");
+            area.appendChild(this.btn);
         }
 
         function disPlayDefinition() {
@@ -241,6 +275,8 @@
         function main() {
             generateButton();
             changeDefinition(word);
+            wordSpace(word);
+            fillWords(word);
         }
 
         main();
