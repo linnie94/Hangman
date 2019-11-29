@@ -40,6 +40,10 @@
 
     <p>YOUR GUESS</p>
     <p id="guessID">YOUR GUESS?</p>
+
+    <p>YOUR SCORE</p>
+    <p id="scoreID">0</p>
+
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -55,7 +59,7 @@
         let arrayOfDefs;
         let arrayOfAnswers;
 
-        let answerChr;
+
 
         let arrayOfCorrectGuesses;
 
@@ -103,14 +107,14 @@
                     // answerArray is assigned the blank spaces in the function wordSpace.
                 }
             }
-            // Re displays the word lines with letters
-            let wordDisplay = "";
+            // Redisplays the word lines with letters
+            let wordDisplay = ""
             for (let i = 0; i < generatedAnswer.length; i++) {
                 // Loop from 0 to the length of the answer
 
                 // Create a new string that will hold an updated version of the displayed answer
                 wordDisplay += " " + answerArray[i];
-                
+
             }
             // When the loop is finish update the element with the updated display.
             document.getElementById("guesses").innerHTML = wordDisplay;
@@ -139,7 +143,7 @@
 
                 let button = new Button(buttonLetter);
                 // Create a button in an object constructor
-                console.log(button);
+                console.log(button)
 
 
                 button.btn.addEventListener("click", function () {
@@ -162,16 +166,17 @@
 
                     */
 
+                    arrayOfGuesses.push(buttonLetter);
 
                     compareLetterWithAnswer(buttonLetter);
                     // This function is to check whether a correct letter was selected or not.
                     // It will console right or wrong
 
-                    fillWords(buttonLetter);
+                    fillWords(buttonLetter)
                     // Once the button is clicked on we
 
-                    
-                    
+
+
 
 
                     gameOver();
@@ -187,7 +192,7 @@
             if (!generatedAnswer.includes(letter)) {
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log(">:) That was incorrect.");
-    
+
                 // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
                 subtractLife();
                 // Decrease the amount of lives the user has left.
@@ -199,9 +204,12 @@
 
                 earnScore(letter);
                 console.log("That was the right letter.");
-                
+
             }
+            document.getElementById("scoreID").innerHTML = score;
         }
+
+
 
 
         function Button(alphaLetter) {
@@ -255,7 +263,7 @@
 
         }
 
-        function loseScore(){
+        function loseScore() {
             score--;
         }
 
@@ -265,30 +273,26 @@
             lives -= 1;
             // Subtract lives by 1
             document.getElementById("lifeID").innerHTML = lives;
-            // Change lifeID to represent how many lives are left.
-            
+            // Change lifeID to represnt how many lives are left.
+
         }
 
-        
+
 
 
         function gameOver() {
             if (lives === 0) {
                 let endGameUserInfo = prompt("Please enter your name.") + ", your score is " + score + ".";
-                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo; 
+                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
             }
         }
 
-        // TODO: reset button
-        // TODO: let boundary for score - make sure it doesn't go down below zero
+        function reset() {
 
-        function addReset(){
-            // The purpose of this function is re-run the main function and reset all the of objects
-            // so a new game can be started.
+            document.getElementById("buttons").innerHTML = "";
+            document.getElementById("guesses").innerHTML = "";
+            main();
 
-            // TO-DO: Currently the button functions, but it still need to figure out a way to reset the objects for a new game to start.
-
-            document.getElementById("resetButton").onclick = main;
         }
 
 
@@ -322,16 +326,19 @@
             generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
             answerArray = [];
 
+            console.log(answerArray)
+
 
             generateButton();
-            
+
             changeDefinition(generatedAnswer);
             wordSpace(generatedAnswer);
             // fillWords(generatedAnswer);
         }
 
         main();
-        addReset();
+        document.getElementById("resetButton").onclick = reset;
+
     </script>
 
 </body>
