@@ -46,12 +46,16 @@
 
 
     <p>YOUR GUESS</p>
+<<<<<<< HEAD
+    <p id="guessID"></p>
+=======
     <p id="guessID">YOUR GUESS?</p>
 
     <p>YOUR SCORE</p>
     <p id="scoreID">0</p>
 
 
+>>>>>>> 48b48085b1af746b732ec240bda623955cb9440a
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -183,8 +187,14 @@
 
                     fillWords(buttonLetter);
                     // Once the button is clicked on we
+<<<<<<< HEAD
+
+
+                    displayGuesses()
+=======
                     displayGuess(buttonLetter);
 
+>>>>>>> 48b48085b1af746b732ec240bda623955cb9440a
 
 
                     gameOver();
@@ -217,7 +227,20 @@
             document.getElementById("scoreID").innerHTML = score;
         }
 
+        function displayGuesses() {
+            // makes the lines for the word
+            let displayGuess = arrayOfGuesses[0]
+            for (let i = 1; i < arrayOfGuesses.length; i++) {
 
+<<<<<<< HEAD
+                let guess = document.getElementById("guessID")
+                guess.innerHTML = displayGuess + ", " + arrayOfGuesses[i]
+            }
+        }
+
+
+=======
+>>>>>>> 48b48085b1af746b732ec240bda623955cb9440a
         function Button(alphaLetter) {
             // This object constructer takes in one argument. alphaLetter -> string
             // The argument is the letter of this button. 
