@@ -51,27 +51,31 @@
         // for the testing purpose, only 4 words in the array.
         // hint
         let arrayOfDefs = {
+            // This is a dictionary.
+            // The keys are words, and the values are their hints
             "TATTOO": "a form of body modification where a design is made by inserting ink",
             "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
             "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
             "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
         }
         let arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
+        // This is a list of all he possible words that can be chosen
 
         let answerChr = [];
 
         let arrayOfGuesses = [];
         let userGuess = "";
         let lives = 7;
+        // How many guesses the user can have before they have to stop playing
 
         // randomly picks a word from choices
-        let word = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
+        let generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
         let answerArray = [];
-        function changeDefinition(word) {
-            console.log(word);
-            console.log(arrayOfDefs[word]);
+        function changeDefinition(generatedAnswer) {
+            console.log(generatedAnswer);
+            console.log(arrayOfDefs[generatedAnswer]);
             // changes the definition based on the word
-            document.getElementById("wordDefID").innerHTML = arrayOfDefs[word];
+            document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
 
         }
 
@@ -132,9 +136,11 @@
                 // Create a button in an object constructor
                 button.btn.innerHTML = letters[i];
                 // gives the button an ID that's the same as its letter
+
                 button.btn.id = letters[i];
                 // Assign the innerHTML with the letter in letters with index i
                 // 0 = A, 1 = B, 2 = C, etc...
+
                 button.btn.addEventListener("click", function () {
                     // Add an event to the button once it is made.
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
@@ -198,7 +204,11 @@
         }
 
         function disPlayDefinition() {
+            // This is supposed the choose a random word.
+            // This word is the one that users will be guessing
+
             let i = Math.floor(Math.random() * 4);  // i: 0~3 for the testing purpose
+
             document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
             document.getElementById("answerID").innerHTML = arrayOfAnswers[i];
             return i;
@@ -218,48 +228,6 @@
             return answerChr;  // answerChr --> list
         }
 
-        // let guessCount = 0;
-        // function guess(answerChr) {  // answerChr ---> list
-        //     for (let i = 0; i < answerChr.length; i++) {
-        //         if (arrayOfGuesses[guessCount] === answerChr[i]) {
-        //             console.log(arrayOfGuesses);
-        //             console.log(arrayOfGuesses[guessCount]);
-        //             earnScore();
-        //             guessCount++;
-        //             break;
-        //         }
-        //         else {
-        //             console.log(arrayOfGuesses);
-        //             console.log(arrayOfGuesses[guessCount]);
-        //             loseScore();
-        //             guessCount++;
-        //             break;
-        //         }
-        //     }
-        // }
-
-
-        // This is a copy of the code above
-        let guessCount = 0;
-        function guess(answerChr) {  // answerChr ---> list
-            for (let i = 0; i < answerChr.length; i++) {
-                if (arrayOfGuesses[guessCount] === answerChr[i]) {
-                    // You can just use str.includes("word") to see if the letter is in the word or not.
-                    console.log(arrayOfGuesses);
-                    console.log(arrayOfGuesses[guessCount]);
-                    earnScore();
-                    guessCount++;
-                    break;
-                }
-                else {
-                    console.log(arrayOfGuesses);
-                    console.log(arrayOfGuesses[guessCount]);
-                    loseScore();
-                    guessCount++;
-                    break;
-                }
-            }
-        }
 
 
         function earnScore(numOfSameLetter) {
