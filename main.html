@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,9 +8,15 @@
 </head>
 
 <body>
+    <h1>Hangman Game X_X</h1>
+    <div id="life">
+        <p id="life_p">LIFE</p>
+        <p id="lifeID">7</p>
+    </div>
     <p>DEFINITION(HINT)</p>
     <p id="wordDefID" style="display: none"></p>
     <button id="toggle" onclick=animate_toggle()>Hint!</button>
+    <!-- Hint Button -->
     <script>
         function animate_toggle() {
             let x = document.getElementById("wordDefID");
@@ -29,21 +35,18 @@
     <!-- Todo: cover -->
     <div id="answerSpace">
 
+
+
     </div>
 
     <p>ANSWER(Chr Ver)</p>
     <p id="answerChrID"></p>
     <!-- todo: this is for checking only-->
 
-    <p>LIFE</p>
-    <p id="lifeID">7</p>
 
-    <p>YOUR GUESS</p>
+
+    <p id="letters_you_guess">YOUR GUESS</p>
     <p id="guessID">YOUR GUESS?</p>
-
-    <p>YOUR SCORE</p>
-    <p id="scoreID">0</p>
-
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -59,7 +62,7 @@
         let arrayOfDefs;
         let arrayOfAnswers;
 
-
+        let answerChr;
 
         let arrayOfCorrectGuesses;
 
@@ -89,8 +92,10 @@
             // makes the lines for the word
             for (let i = 0; i < answer.length; i++) {
                 answerArray[i] = " " + "_";
-                let guess = document.getElementById("guesses")
-                guess.append(answerArray[i])
+                let guess = document.getElementById("guesses");
+                guess.append(answerArray[i]);
+
+
             }
         }
 
@@ -98,7 +103,7 @@
         function fillWords(guess) {
             for (let i = 0; i < generatedAnswer.length; i++) {
                 // Loop from 0 to the length of the answer
-                if (generatedAnswer[i] == guess) {
+                if (generatedAnswer[i] === guess) {
                     // If the argument is in the answer then add it to a list.
 
                     // We will REPLACE the blank space with the correct letter at index i
@@ -108,7 +113,7 @@
                 }
             }
             // Redisplays the word lines with letters
-            let wordDisplay = ""
+            let wordDisplay = "";
             for (let i = 0; i < generatedAnswer.length; i++) {
                 // Loop from 0 to the length of the answer
 
@@ -133,6 +138,10 @@
             // Return a list of capital letters from A - Z
         }
 
+        function displayGuess(letter){
+            document.getElementById('letters_you_guessed').innerHTML = letter;
+        }
+
         function generateButton() {
             // letters is a list of the entire alphabet,
             let letters = alpha();
@@ -143,7 +152,7 @@
 
                 let button = new Button(buttonLetter);
                 // Create a button in an object constructor
-                console.log(button)
+                console.log(button);
 
 
                 button.btn.addEventListener("click", function () {
@@ -152,7 +161,7 @@
                     // The event will print every time it is clicked.
 
                     document.getElementById(buttonLetter).style.visibility = "hidden";
-                    /* 
+                    /*
                     MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
 
                     First, they all start off having the class: unclicked , meaning they're are still
@@ -166,16 +175,14 @@
 
                     */
 
-                    arrayOfGuesses.push(buttonLetter);
 
                     compareLetterWithAnswer(buttonLetter);
                     // This function is to check whether a correct letter was selected or not.
                     // It will console right or wrong
 
-                    fillWords(buttonLetter)
+                    fillWords(buttonLetter);
                     // Once the button is clicked on we
-
-
+                    displayGuess(buttonLetter);
 
 
 
@@ -192,7 +199,7 @@
             if (!generatedAnswer.includes(letter)) {
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log(">:) That was incorrect.");
-
+    
                 // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
                 subtractLife();
                 // Decrease the amount of lives the user has left.
@@ -204,12 +211,9 @@
 
                 earnScore(letter);
                 console.log("That was the right letter.");
-
+                
             }
-            document.getElementById("scoreID").innerHTML = score;
         }
-
-
 
 
         function Button(alphaLetter) {
@@ -226,6 +230,7 @@
             let area = document.getElementById("buttons");
             area.appendChild(this.btn);
         }
+
 
         function disPlayDefinition() {
             // This is supposed the choose a random word.
@@ -263,7 +268,7 @@
 
         }
 
-        function loseScore() {
+        function loseScore(){
             score--;
         }
 
@@ -274,25 +279,28 @@
             // Subtract lives by 1
             document.getElementById("lifeID").innerHTML = lives;
             // Change lifeID to represnt how many lives are left.
-
+            
         }
 
-
+        
 
 
         function gameOver() {
             if (lives === 0) {
                 let endGameUserInfo = prompt("Please enter your name.") + ", your score is " + score + ".";
-                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo; 
             }
         }
 
-        function reset() {
+        // TODO: reset button
+        // TODO: let boundary for score - make sure it doesn't go down below zero
 
+        function reset(){
+            
             document.getElementById("buttons").innerHTML = "";
             document.getElementById("guesses").innerHTML = "";
             main();
-
+            
         }
 
 
@@ -307,7 +315,7 @@
                 "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
                 "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
                 "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
-            }
+            };
 
             arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
             // This is a list of all he possible words that can be chosen
@@ -330,7 +338,7 @@
 
 
             generateButton();
-
+            
             changeDefinition(generatedAnswer);
             wordSpace(generatedAnswer);
             // fillWords(generatedAnswer);
@@ -338,7 +346,7 @@
 
         main();
         document.getElementById("resetButton").onclick = reset;
-
+        
     </script>
 
 </body>
