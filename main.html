@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,7 +55,7 @@
         let arrayOfDefs;
         let arrayOfAnswers;
 
-        let answerChr;
+
 
         let arrayOfCorrectGuesses;
 
@@ -110,7 +110,7 @@
 
                 // Create a new string that will hold an updated version of the displayed answer
                 wordDisplay += " " + answerArray[i];
-                
+
             }
             // When the loop is finish update the element with the updated display.
             document.getElementById("guesses").innerHTML = wordDisplay;
@@ -162,6 +162,7 @@
 
                     */
 
+                    arrayOfGuesses.push(buttonLetter);
 
                     compareLetterWithAnswer(buttonLetter);
                     // This function is to check whether a correct letter was selected or not.
@@ -170,8 +171,8 @@
                     fillWords(buttonLetter)
                     // Once the button is clicked on we
 
-                    
-                    
+
+
 
 
                     gameOver();
@@ -187,7 +188,7 @@
             if (!generatedAnswer.includes(letter)) {
                 // This checks the letter, but it also checks whether is it capitalized or not.
                 console.log(">:) That was incorrect.");
-    
+
                 // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
                 subtractLife();
                 // Decrease the amount of lives the user has left.
@@ -199,9 +200,11 @@
 
                 earnScore(letter);
                 console.log("That was the right letter.");
-                
+
             }
         }
+
+
 
 
         function Button(alphaLetter) {
@@ -255,7 +258,7 @@
 
         }
 
-        function loseScore(){
+        function loseScore() {
             score--;
         }
 
@@ -266,28 +269,25 @@
             // Subtract lives by 1
             document.getElementById("lifeID").innerHTML = lives;
             // Change lifeID to represnt how many lives are left.
-            
+
         }
 
-        
+
 
 
         function gameOver() {
             if (lives === 0) {
                 let endGameUserInfo = prompt("Please enter your name.") + ", your score is " + score + ".";
-                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo; 
+                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
             }
         }
 
-        // TODO: reset button
-        // TODO: let boundary for score - make sure it doesn't go down below zero
+        function reset() {
 
-        function reset(){
-            
             document.getElementById("buttons").innerHTML = "";
             document.getElementById("guesses").innerHTML = "";
             main();
-            
+
         }
 
 
@@ -325,7 +325,7 @@
 
 
             generateButton();
-            
+
             changeDefinition(generatedAnswer);
             wordSpace(generatedAnswer);
             // fillWords(generatedAnswer);
@@ -333,7 +333,7 @@
 
         main();
         document.getElementById("resetButton").onclick = reset;
-        
+
     </script>
 
 </body>
