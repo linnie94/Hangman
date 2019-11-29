@@ -10,3 +10,17 @@
 #buttons{
     text-align: center;
 }
+h1{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size:5rem;
+    text-align: center;
+
+}
+p{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#life{
+    float: right;
+    text-align: center;
+    padding: 2rem;
+}
