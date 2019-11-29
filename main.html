@@ -118,17 +118,6 @@
         }
 
 
-        function countSameLetter(word, guess) {
-            let sameChrCounter = 0;
-            for (let i = 0; i < word.length; i++) {
-                if (word[i] == guess) {
-                    sameChrCounter++;
-                }
-            }
-            // console.log(sameChrCounter);
-            return sameChrCounter;
-        }
-
 
         function alpha() {
             // This is used to the alphabet
@@ -207,10 +196,8 @@
                 // Remove points from the user.
 
             } else {
-                let numOfSameLetter = countSameLetter(generatedAnswer, letter);
-                // Count the number of the same letters between answer and guess
 
-                earnScore(numOfSameLetter);
+                earnScore(letter);
                 console.log("That was the right letter.");
                 
             }
@@ -244,27 +231,24 @@
         }
 
 
-        // function AnswerChrLeng(i) {
-        //     // Todo: utilize this and use it as popping all the char that was clicked
-        //     // example: this f   unction returns array [T, a, T, t, o, o ]
-        //     // if t is clicked ever single time each letter is encountered
-        //     // pop the letter/char and if we are utilizing score function increment the score
-        //     for (let j = 0; j < arrayOfAnswers[i].length; j++) {
-        //         answerChr[j] = arrayOfAnswers[i][j];
-        //         // console.log(answerChr);
-        //     }
-        //     document.getElementById("answerChrID").innerHTML = answerChr;
-        //     return answerChr;  // answerChr --> list
-        // }
 
 
 
-        function earnScore(numOfSameLetter) {
-            // This function takes an integer. 
-            // It will run a loop from 0 to the argument.
-            // Add one to score every time
-            for (let i = 0; i < numOfSameLetter; i++) {
-                score++;
+        function earnScore(guess) {
+            /*
+            One argument; guess; a letter
+
+            If guess appears in generated answer than add one to score.
+
+            TO-MAYBE-DO: This can be done better by placing all the correct letters in an array.
+            Once we figure out how many times a letter appears in the array we remove it.
+            This will prevent us having to go over the same length list every time.
+
+            */
+            for (let i = 0; i < generatedAnswer.length; i++) {
+                if (generatedAnswer[i] == guess) {
+                    score++;
+                }
             }
 
             // TO-DO: Add an element the HTML that holds the current score of the user.
