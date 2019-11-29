@@ -98,6 +98,7 @@
                 wordDisplay += " " + answerArray[i];
                 document.getElementById("guesses").innerHTML = wordDisplay;
             }
+            return false;
         }
 
         
@@ -108,7 +109,8 @@
                     sameChrCounter ++;
                 }
             }
-            console.log(sameChrCounter);
+            // console.log(sameChrCounter);
+            return sameChrCounter;
         }
 
 
@@ -138,8 +140,15 @@
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
                     // The event will print every time it is clicked.
                     checkDummyWord(button.btn.innerHTML);
-                    fillWords(button.btn.innerHTML);
-                    countSameLetter(word, button.btn.innerHTML);
+
+                    // Count the number of the same letters between answer and guess
+                    let numOfSameLetter = countSameLetter(word, button.btn.innerHTML);
+                    if (!(fillWords(button.btn.innerHTML)) == true) {
+                        // raise scores by the numOfSameLetter
+                        earnScore(numOfSameLetter);
+                    } else {
+                        loseScore();    // <---------- need to fix it.
+                    }
                 })
             }
         }
@@ -253,8 +262,11 @@
         }
 
 
-        function earnScore() {
-            document.getElementById("lifeID").innerHTML = ++lives;
+        function earnScore(numOfSameLetter) {
+            for(let i = 0; i < numOfSameLetter; i++) {
+                lives++;
+            }
+            document.getElementById("lifeID").innerHTML = lives;
         }
 
 
