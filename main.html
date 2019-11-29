@@ -45,8 +45,13 @@
 
 
 
-    <p id="letters_you_guess">YOUR GUESS</p>
+    <p>YOUR GUESS</p>
     <p id="guessID">YOUR GUESS?</p>
+
+    <p>YOUR SCORE</p>
+    <p id="scoreID">0</p>
+
+
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -138,10 +143,6 @@
             // Return a list of capital letters from A - Z
         }
 
-        function displayGuess(letter){
-            document.getElementById('letters_you_guessed').innerHTML = letter;
-        }
-
         function generateButton() {
             // letters is a list of the entire alphabet,
             let letters = alpha();
@@ -174,7 +175,7 @@
                     disable all active buttons.
 
                     */
-
+                    arrayOfGuesses.push(buttonLetter);
 
                     compareLetterWithAnswer(buttonLetter);
                     // This function is to check whether a correct letter was selected or not.
@@ -213,6 +214,7 @@
                 console.log("That was the right letter.");
                 
             }
+            document.getElementById("scoreID").innerHTML = score;
         }
 
 
