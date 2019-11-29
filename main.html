@@ -126,15 +126,15 @@
         }
 
         function generateButton() {
-            // This is used to create buttons for every letter of the alphabet
+            // letters is a list of the entire alphabet,
             let letters = alpha();
-            for (let i = 0; i < 26; i++) {
-                let button = new Button(i);
-                // Create a button in an object constructor
-                button.btn.innerHTML = letters[i];
 
-                // gives the button an ID that's the same as its letter
-                button.btn.id = letters[i];
+            for (let i = 0; i < 26; i++) {
+                // We are looping from 0 to 26 because we want to add every button the html page.
+
+                let button = new Button(letters[i]);
+                // Create a button in an object constructor
+                console.log(button)
 
 
                 button.btn.addEventListener("click", function () {
@@ -168,18 +168,20 @@
             if (!generatedAnswer.includes(letter)) {
                 console.log(">:) That was incorrect.");
                 // This checks the letter, but it also checks whether is it capitalized or not.
+                lives -= 1;
             } else {
                 console.log("That was the right letter.");
             }
         }
 
 
-        function Button(id) {
-            this.id = id;
+        function Button(alphaLetter) {
+            
             this.btn = document.createElement("button");
-            // this.btn.id = `${this.id}`;
+            this.btn.id = alphaLetter;
             this.btn.style.width = "50px";
             this.btn.style.height = "50px";
+            this.btn.innerHTML = alphaLetter;
             let area = document.getElementById("buttons");
             area.appendChild(this.btn);
         }
