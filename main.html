@@ -57,6 +57,8 @@
 
         let answerChr;
 
+        let arrayOfCorrectGuesses;
+
         let arrayOfGuesses;
         let userGuess;
         let lives;
@@ -89,16 +91,27 @@
         // fills the word slots if letter correct
         function fillWords(guess) {
             for (let i = 0; i < generatedAnswer.length; i++) {
+                // Loop from 0 to the length of the answer
                 if (generatedAnswer[i] == guess) {
+                    // If the argument is in the answer then add it to a list.
+
+                    // We will REPLACE the blank space with the correct letter at index i
                     answerArray[i] = guess;
+                    // answerArray is an array filled with blank spaces. It is global.
+                    // answerArray is assigned the blank spaces in the function wordSpace.
                 }
             }
             // Redisplays the word lines with letters
             let wordDisplay = ""
             for (let i = 0; i < generatedAnswer.length; i++) {
+                // Loop from 0 to the length of the answer
+
+                // Create a new string that will hold an updated version of the displayed answer
                 wordDisplay += " " + answerArray[i];
-                document.getElementById("guesses").innerHTML = wordDisplay;
+                
             }
+            // When the loop is finish update the element with the updated display.
+            document.getElementById("guesses").innerHTML = wordDisplay;
             return false;
         }
 
@@ -149,15 +162,19 @@
                     // This function is to check whether a correct letter was selected or not.
                     // It will console right or wrong
 
+                    fillWords(letters[i])
+                    // Once the button is clicked on we
 
                     // Count the number of the same letters between answer and guess
-                    let numOfSameLetter = countSameLetter(generatedAnswer, button.btn.innerHTML);
-                    if (!(fillWords(button.btn.innerHTML)) == true) {
-                        // raise scores by the numOfSameLetter
-                        earnScore(numOfSameLetter);
-                    } else {
-                        loseScore();    // <---------- need to fix it.
-                    }
+                    // let numOfSameLetter = countSameLetter(generatedAnswer, button.btn.innerHTML);
+                    // if (!(fillWords(button.btn.innerHTML)) == true) {
+                    //     // raise scores by the numOfSameLetter
+                    //     earnScore(numOfSameLetter);
+                    // } else {
+                    //     loseScore();    // <---------- need to fix it.
+                    // }
+
+                    // The code above isn't functioning how it was made. Adjusted the compareLetterWithAnswer so it will hand subtracting lives. - BD
                 })
             }
         }
@@ -171,17 +188,22 @@
                 lives -= 1;
             } else {
                 console.log("That was the right letter.");
+                
             }
         }
 
 
         function Button(alphaLetter) {
-            
+            // This object constructer takes in one argument. alphaLetter -> string
+            // The argument is the letter of this button. 
             this.btn = document.createElement("button");
             this.btn.id = alphaLetter;
+            // The id of this button will be the same as the letter it represents.
             this.btn.style.width = "50px";
             this.btn.style.height = "50px";
             this.btn.innerHTML = alphaLetter;
+            // Adjust the innerHTML so that is represents the letter this button was given.
+
             let area = document.getElementById("buttons");
             area.appendChild(this.btn);
         }
@@ -222,9 +244,14 @@
         }
 
 
-        function loseScore() {
-            document.getElementById("lifeID").innerHTML = --lives;
+        function subtractLife() {
+            lives -= 1;
+            // Subtract lives by 1
+            document.getElementById("lifeID").innerHTML = lives;
+            // Change lifeID to represnt how many lives are left.
         }
+
+        
 
 
         function gameOver() {
@@ -259,6 +286,8 @@
             // This is a list of all he possible words that can be chosen
 
             answerChr = [];
+
+            arrayOfCorrectGuesses = [];
 
             arrayOfGuesses = [];
             userGuess = "";
