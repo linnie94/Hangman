@@ -47,30 +47,24 @@
         <br>
     </div>
 
+    <input type="button" id="resetButton" value="Reset">
+
     <script>
         // for the testing purpose, only 4 words in the array.
         // hint
-        let arrayOfDefs = {
-            // This is a dictionary.
-            // The keys are words, and the values are their hints
-            "TATTOO": "a form of body modification where a design is made by inserting ink",
-            "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
-            "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
-            "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
-        }
-        let arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
-        // This is a list of all he possible words that can be chosen
+        let arrayOfDefs;
+        let arrayOfAnswers;
 
-        let answerChr = [];
+        let answerChr;
 
-        let arrayOfGuesses = [];
-        let userGuess = "";
-        let lives = 7;
+        let arrayOfGuesses;
+        let userGuess;
+        let lives;
         // How many guesses the user can have before they have to stop playing
 
         // randomly picks a word from choices
-        let generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
-        let answerArray = [];
+        let generatedAnswer;
+        let answerArray;
 
 
         function changeDefinition(generatedAnswer) {
@@ -108,12 +102,12 @@
             return false;
         }
 
-        
+
         function countSameLetter(word, guess) {
             let sameChrCounter = 0;
             for (let i = 0; i < word.length; i++) {
-                if(word[i] == guess) {
-                    sameChrCounter ++;
+                if (word[i] == guess) {
+                    sameChrCounter++;
                 }
             }
             // console.log(sameChrCounter);
@@ -138,17 +132,23 @@
                 let button = new Button(i);
                 // Create a button in an object constructor
                 button.btn.innerHTML = letters[i];
-                // gives the button an ID that's the same as its letter
 
+                // gives the button an ID that's the same as its letter
                 button.btn.id = letters[i];
-                // Assign the innerHTML with the letter in letters with index i
-                // 0 = A, 1 = B, 2 = C, etc...
+
 
                 button.btn.addEventListener("click", function () {
                     // Add an event to the button once it is made.
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
                     // The event will print every time it is clicked.
-                    checkDummyWord(button.btn.innerHTML);
+
+                    document.getElementById(letters[i]).style.visibility = "hidden";
+
+
+                    compareLetterWithAnswer(letters[i]);
+                    // This function is to check whether a correct letter was selected or not.
+                    // It will console right or wrong
+
 
                     // Count the number of the same letters between answer and guess
                     let numOfSameLetter = countSameLetter(generatedAnswer, button.btn.innerHTML);
@@ -162,14 +162,14 @@
             }
         }
 
-        function checkDummyWord(letter) {
+        function compareLetterWithAnswer(letter) {
             // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
-            document.getElementById(letter).style.visibility = "hidden";
-            if (generatedAnswer.includes(letter)) {
-                // This checks the letter, but it also checks whether is it capitalized or not.
-                console.log("That was the right letter.");
-            } else {
+
+            if (!generatedAnswer.includes(letter)) {
                 console.log(">:) That was incorrect.");
+                // This checks the letter, but it also checks whether is it capitalized or not.
+            } else {
+                console.log("That was the right letter.");
             }
         }
 
@@ -198,7 +198,7 @@
 
         // function AnswerChrLeng(i) {
         //     // Todo: utilize this and use it as popping all the char that was clicked
-        //     // example: this function returns array [T, a, T, t, o, o ]
+        //     // example: this f   unction returns array [T, a, T, t, o, o ]
         //     // if t is clicked ever single time each letter is encountered
         //     // pop the letter/char and if we are utilizing score function increment the score
         //     for (let j = 0; j < arrayOfAnswers[i].length; j++) {
@@ -212,7 +212,8 @@
 
 
         function earnScore(numOfSameLetter) {
-            for(let i = 0; i < numOfSameLetter; i++) {
+            // This code isn't needed right now
+            for (let i = 0; i < numOfSameLetter; i++) {
                 lives++;
             }
             document.getElementById("lifeID").innerHTML = lives;
@@ -233,13 +234,41 @@
         // TODO: reset button
         // TODO: let boundary for score - make sure it doesn't go down below zero
 
+
+
         // function restart() {
 
         // }
 
 
+
+
         function main() {
+            arrayOfDefs = {
+                // This is a dictionary.
+                // The keys are words, and the values are their hints
+                "TATTOO": "a form of body modification where a design is made by inserting ink",
+                "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
+                "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
+                "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
+            }
+
+            arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
+            // This is a list of all he possible words that can be chosen
+
+            answerChr = [];
+
+            arrayOfGuesses = [];
+            userGuess = "";
+            lives = 7;
+
+            // randomly picks a word from choices
+            generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
+            answerArray = [];
+
+
             generateButton();
+            
             changeDefinition(generatedAnswer);
             wordSpace(generatedAnswer);
             // fillWords(generatedAnswer);
