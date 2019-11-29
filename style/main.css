@@ -7,8 +7,19 @@
     width: 100%;
 }
 
+@media screen and (max-width:600px){
+    #answerSpace{
+        width: 50%;
+    }
+    #buttons{
+        width: 5%;
+        height: 5%;
+    }
+}
+
 #buttons{
     text-align: center;
+    padding: 5em;
 }
 h1{
     font-family: "Comic Sans MS", cursive, sans-serif;
