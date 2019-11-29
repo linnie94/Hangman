@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -282,13 +282,12 @@
         // TODO: reset button
         // TODO: let boundary for score - make sure it doesn't go down below zero
 
-        function addReset(){
-            // The purpose of this function is re-run the main function and reset all the of objects
-            // so a new game can be started.
-
-            // TO-DO: Currently the button functions, but it still need to figure out a way to reset the objects for a new game to start.
-
-            document.getElementById("resetButton").onclick = main;
+        function reset(){
+            
+            document.getElementById("buttons").innerHTML = "";
+            document.getElementById("guesses").innerHTML = "";
+            main();
+            
         }
 
 
@@ -322,6 +321,8 @@
             generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
             answerArray = [];
 
+            console.log(answerArray)
+
 
             generateButton();
             
@@ -331,7 +332,8 @@
         }
 
         main();
-        addReset();
+        document.getElementById("resetButton").onclick = reset;
+        
     </script>
 
 </body>
