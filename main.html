@@ -40,6 +40,10 @@
 
     <p>YOUR GUESS</p>
     <p id="guessID">YOUR GUESS?</p>
+
+    <p>YOUR SCORE</p>
+    <p id="scoreID">0</p>
+
     <div class="guessArea">
         <p id="guesses"></p>
     </div>
@@ -201,6 +205,7 @@
                 console.log("That was the right letter.");
                 
             }
+            document.getElementById("scoreID").innerHTML = score;
         }
 
 
