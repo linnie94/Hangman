@@ -16,21 +16,10 @@
     </div>
     <p>DEFINITION(HINT)</p>
     <p id="wordDefID" style="display: none"></p>
-    <button id="toggle" onclick=animate_toggle()>Hint!</button>
-    <!-- Hint Button -->
-    <script>
-        function animate_toggle() {
-            let x = document.getElementById("wordDefID");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            }
-            else {
-                x.style.display = "none";
-            }
-        }
-    </script>
 
 
+    <div id ="info">
+        <button id="toggle" onclick=animate_toggle()>Hint!</button>
     <p>ANSWER(TESTING)</p>
     <p id="answerID"></p>
     <!-- Todo: cover -->
@@ -50,10 +39,16 @@
     <p id="guessID">YOUR GUESS?</p>
 
     <p>YOUR SCORE</p>
-    <p id="scoreID">0</p>
+        <p id="scoreID">0</p>
+    </div>
+    <div id="hangArea">
 
 
-    <div class="guessArea">
+        <img id="hangman" src="images/hangman_0.gif">
+    </div>
+
+    <div id="guessArea">
+
         <p id="guesses"></p>
     </div>
     <div id="buttons">
@@ -74,8 +69,8 @@
 
         let arrayOfGuesses;
         let userGuess;
+        let hangmanImages;
         let lives;
-
         let score;
         // How many guesses the user can have before they have to stop playing
 
@@ -84,6 +79,15 @@
         let answerArray;
 
 
+        function animate_toggle() {
+            let x = document.getElementById("wordDefID");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
+        }
         function changeDefinition(generatedAnswer) {
             console.log(generatedAnswer);
             console.log(arrayOfDefs[generatedAnswer]);
@@ -132,7 +136,11 @@
             return false;
         }
 
-
+        function hangmanImage(){
+            document.getElementById("hangman").style.visibility = "visible";
+            document.getElementById("hangman").src = "images/hangman_" + hangmanImages + ".gif";
+            hangmanImages +=1;
+        }
 
         function alpha() {
             // This is used to the alphabet
@@ -210,6 +218,8 @@
                 loseScore();
                 // Remove points from the user.
 
+                hangmanImage();
+                //adds hangman
             } else {
 
                 earnScore(letter);
@@ -222,7 +232,6 @@
         function displayGuesses() {
             // makes the lines for the word
             let displayGuess = arrayOfGuesses[0]
-            console.log(arrayOfGuesses);
             for (let i = 1; i < arrayOfGuesses.length; i++) {
                 displayGuess += ", " + arrayOfGuesses[i];
             }
@@ -352,7 +361,7 @@
             // randomly picks a word from choices
             generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
             answerArray = [];
-
+            hangmanImages = 0;
             console.log(answerArray)
 
 
