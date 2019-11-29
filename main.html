@@ -62,6 +62,8 @@
         let arrayOfGuesses;
         let userGuess;
         let lives;
+
+        let score;
         // How many guesses the user can have before they have to stop playing
 
         // randomly picks a word from choices
@@ -144,8 +146,9 @@
 
             for (let i = 0; i < 26; i++) {
                 // We are looping from 0 to 26 because we want to add every button the html page.
+                let buttonLetter = letters[i];
 
-                let button = new Button(letters[i]);
+                let button = new Button(buttonLetter);
                 // Create a button in an object constructor
                 console.log(button)
 
@@ -155,26 +158,36 @@
                     // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
                     // The event will print every time it is clicked.
 
-                    document.getElementById(letters[i]).style.visibility = "hidden";
+                    document.getElementById(buttonLetter).style.visibility = "hidden";
+                    /* 
+                    MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
+
+                    First, they all start off having the class: unclicked , meaning they're are still
+                    active buttons.
+
+                    Once they're clicked we should change the class to clicked. So any button with this 
+                    class will have it's style changed to hidden in the CSS file.
+
+                    And when the game ends because the user won/lost we can then create a function to 
+                    disable all active buttons.
+
+                    */
 
 
-                    compareLetterWithAnswer(letters[i]);
+                    compareLetterWithAnswer(buttonLetter);
                     // This function is to check whether a correct letter was selected or not.
                     // It will console right or wrong
 
-                    fillWords(letters[i])
+                    fillWords(buttonLetter)
                     // Once the button is clicked on we
 
-                    // Count the number of the same letters between answer and guess
-                    // let numOfSameLetter = countSameLetter(generatedAnswer, button.btn.innerHTML);
-                    // if (!(fillWords(button.btn.innerHTML)) == true) {
-                    //     // raise scores by the numOfSameLetter
-                    //     earnScore(numOfSameLetter);
-                    // } else {
-                    //     loseScore();    // <---------- need to fix it.
-                    // }
+                    
+                    
 
-                    // The code above isn't functioning how it was made. Adjusted the compareLetterWithAnswer so it will hand subtracting lives. - BD
+
+                    gameOver();
+                    // Whenever any button is clicked we want to check to make sure the user hasn't reached zero lives yet.
+                    // If the user reaches zero lives the game should end.
                 })
             }
         }
@@ -188,8 +201,16 @@
     
                 // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
                 subtractLife();
-                // Run this function to decrease the amount of lives the user has left.
+                // Decrease the amount of lives the user has left.
+
+                loseScore();
+                // Remove points from the user.
+
             } else {
+                let numOfSameLetter = countSameLetter(generatedAnswer, letter);
+                // Count the number of the same letters between answer and guess
+
+                earnScore(numOfSameLetter);
                 console.log("That was the right letter.");
                 
             }
@@ -239,11 +260,19 @@
 
 
         function earnScore(numOfSameLetter) {
-            // This code isn't needed right now
+            // This function takes an integer. 
+            // It will run a loop from 0 to the argument.
+            // Add one to score every time
             for (let i = 0; i < numOfSameLetter; i++) {
-                lives++;
+                score++;
             }
-            document.getElementById("lifeID").innerHTML = lives;
+
+            // TO-DO: Add an element the HTML that holds the current score of the user.
+
+        }
+
+        function loseScore(){
+            score--;
         }
 
 
@@ -253,6 +282,7 @@
             // Subtract lives by 1
             document.getElementById("lifeID").innerHTML = lives;
             // Change lifeID to represnt how many lives are left.
+            
         }
 
         
@@ -260,18 +290,23 @@
 
         function gameOver() {
             if (lives === 0) {
-                document.getElementById("guessID").innerHTML = "Game Over! " + prompt("Please enter your name.") + ", your score is " + lives + ".";
+                let endGameUserInfo = prompt("Please enter your name.") + ", your score is " + score + ".";
+                document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo; 
             }
         }
 
         // TODO: reset button
         // TODO: let boundary for score - make sure it doesn't go down below zero
 
+        function addReset(){
+            // The purpose of this function is re-run the main function and reset all the of objects
+            // so a new game can be started.
 
+            // TO-DO: Currently the button functions, but it still need to figure out a way to reset the objects for a new game to start.
 
-        // function restart() {
+            document.getElementById("resetButton").onclick = main;
+        }
 
-        // }
 
 
 
@@ -297,6 +332,8 @@
             userGuess = "";
             lives = 7;
 
+
+            score = 0;
             // randomly picks a word from choices
             generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
             answerArray = [];
@@ -310,7 +347,7 @@
         }
 
         main();
-
+        addReset();
     </script>
 
 </body>
