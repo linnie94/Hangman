@@ -20,18 +20,12 @@
 
     <div id="info">
         <button id="toggle" onclick=animate_toggle()>Hint!</button>
-        <p>ANSWER(TESTING)</p>
-        <p id="answerID"></p>
-        <!-- Todo: cover -->
         <div id="answerSpace">
 
 
 
         </div>
 
-        <p>ANSWER(Chr Ver)</p>
-        <p id="answerChrID"></p>
-        <!-- todo: this is for checking only-->
 
 
 
@@ -157,7 +151,7 @@
 
             for (let i = 0; i < 26; i++) {
                 // We are looping from 0 to 26 because we want to add every button the html page.
-            // letters is a list of the entire alphabet; global variable
+                // letters is a list of the entire alphabet; global variable
 
                 let buttonLetter = letters[i];
 
@@ -320,18 +314,18 @@
                 document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
 
                 disableButtons();
-                
+
             }
 
 
         }
 
-        function disableButtons(){
+        function disableButtons() {
             // Function to disable all buttons. 
             for (let i = 0; i < 26; i++) {
                 // letters is an array of the alphabet
-                    document.getElementById(letters[i]).disabled = true;
-                }
+                document.getElementById(letters[i]).disabled = true;
+            }
         }
 
 
