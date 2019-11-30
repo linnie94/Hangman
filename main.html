@@ -14,20 +14,17 @@
         <p id="life_p">LIFE</p>
         <p id="lifeID">7</p>
     </div>
-    <p>DEFINITION(HINT)</p>
+    <div id="defContainer">
+        <p id="defID">DEFINITION(HINT)</p>
+        <div id="toggleDiv">
+            <button id="toggle" onclick=animate_toggle()>Hint!</button>
+        </div>
+    </div>
     <p id="wordDefID" style="display: none"></p>
 
-
     <div id="info">
-        <button id="toggle" onclick=animate_toggle()>Hint!</button>
         <div id="answerSpace">
-
-
-
         </div>
-
-
-
 
         <p>YOUR GUESS</p>
         <p id="guessID">YOUR GUESS?</p>
@@ -36,8 +33,6 @@
         <p id="scoreID">0</p>
     </div>
     <div id="hangArea">
-
-
         <img id="hangman" src="images/hangman_0.gif">
     </div>
 

@@ -7,28 +7,31 @@
 #guesses{
     width: 100%;
     font-size: 4rem;
+    margin: 0;
     text-align: center;
 }
 .guessArea{
     width: 100%;
 }
 
-
-
 #buttons{
     text-align: center;
 
     float: bottom;
 }
+
 h1{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size:5rem;
+    font-size: 3rem;
     text-align: center;
-
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
+
 p{
     font-family: "Comic Sans MS", cursive, sans-serif;
 }
+
 #life{
     text-align: center;
     padding: 2rem;
@@ -54,16 +57,27 @@ p{
     visibility: hidden;
 }
 
+#defContainer {
+    width: 50%;
+    position: relative;
+}
+
+#toggleDiv{
+    position: absolute;
+    left: 180px;
+    top: 2px;
+}
+
 @media screen and (max-width:600px) {
     /*#answerSpace{*/
     /*    font-size: 3rem;*/
     /*}*/
     .btns{
-        width: 8em;
-        height: 8em;
+        width: 5em;
+        height: 5em;
     }
 
     h1, p {
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: "Comic Sans MS", cursive, sans-serif;
     }
 }
