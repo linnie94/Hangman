@@ -17,6 +17,8 @@ let score;
 // randomly picks a word from choices
 let generatedAnswer;
 let answerArray;
+let wordDisplay = "";
+let numOfFilled = 0;
 
 const letters = alpha();
 
@@ -29,6 +31,7 @@ function animate_toggle() {
         x.style.display = "none";
     }
 }
+
 function changeDefinition(generatedAnswer) {
     console.log(generatedAnswer);
     console.log(arrayOfDefs[generatedAnswer]);
@@ -38,15 +41,23 @@ function changeDefinition(generatedAnswer) {
 
 }
 
+// Clear the 'guesses' element before setting up a new word
+function clearGuesses() {
+    answersArray = [];
+    let guess = document.getElementById("guesses");
+    guess.innerHTML = "";
+}
+
 // sets up the lines for the word
 function wordSpace(answer) {
+    // Clear the guesses
+    clearGuesses();
+
     // makes the lines for the word
     for (let i = 0; i < answer.length; i++) {
         answerArray[i] = " " + "_";
         let guess = document.getElementById("guesses");
         guess.append(answerArray[i]);
-
-
     }
 }
 
@@ -61,20 +72,15 @@ function fillWords(guess) {
             answerArray[i] = guess;
             // answerArray is an array filled with blank spaces. It is global.
             // answerArray is assigned the blank spaces in the function wordSpace.
+            numOfFilled++;
         }
     }
+
     // Redisplays the word lines with letters
-    let wordDisplay = "";
-    for (let i = 0; i < generatedAnswer.length; i++) {
-        // Loop from 0 to the length of the answer
-
-        // Create a new string that will hold an updated version of the displayed answer
-        wordDisplay += " " + answerArray[i];
-
-    }
+    wordDisplay = answerArray.join(" ");
     // When the loop is finish update the element with the updated display.
     document.getElementById("guesses").innerHTML = wordDisplay;
-    return false;
+    return numOfFilled;
 }
 
 function hangmanImage() {
@@ -103,7 +109,7 @@ function generateButton() {
 
         let button = new Button(buttonLetter);
         // Create a button in an object constructor
-        console.log(button);
+        // console.log(button);
 
 
         button.btn.addEventListener("click", function () {
@@ -131,12 +137,11 @@ function generateButton() {
             // This function is to check whether a correct letter was selected or not.
             // It will console right or wrong
 
-            fillWords(buttonLetter);
-            // Once the button is clicked on we
+            fillWords(buttonLetter)
 
+            setTimeout(generateNextAnswer, 300);
 
-            displayGuesses()
-
+            displayGuesses();
 
             gameOver();
             // Whenever any button is clicked we want to check to make sure the user hasn't reached zero lives yet.
@@ -145,12 +150,48 @@ function generateButton() {
     }
 }
 
+// Check how many letters are filled.
+// If a user guesses the actual word before losing lives, display a message.
+// Generate a new question and definition.
+// Bring hidden buttons back.
+function generateNextAnswer() {
+    if (numOfFilled === answerArray.length) {
+        // Set a very short timeout on the alert to let the guesses refresh
+        setTimeout(function () {
+            window.alert("Congratulations! Are you ready for the next question?");
+        }, 1);
+
+        // Clear array of guess IDs
+        arrayOfGuesses = [];
+
+        generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
+        answerArray = [];
+        wordDisplay = "";
+
+        changeDefinition(generatedAnswer);
+        wordSpace(generatedAnswer);
+        enableAllButtons();
+        numOfFilled = 0;
+    }
+
+    return numOfFilled;
+}
+
+// Enable all hidden buttons
+function enableAllButtons() {
+    let buttonLetter = "";
+    for (let i = 65; i < 90; i++) {
+        buttonLetter = String.fromCharCode(i);
+        document.getElementById(buttonLetter).style.visibility = "visible";
+    }
+}
+
 function compareLetterWithAnswer(letter) {
     // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
 
     if (!generatedAnswer.includes(letter)) {
         // This checks the letter, but it also checks whether is it capitalized or not.
-        console.log(">:) That was incorrect.");
+        // console.log(">:) That was incorrect.");
 
         // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
         subtractLife();
@@ -162,17 +203,22 @@ function compareLetterWithAnswer(letter) {
         hangmanImage();
         //adds hangman
     } else {
-
         earnScore(letter);
-        console.log("That was the right letter.");
+        // console.log("That was the right letter.");
 
     }
     document.getElementById("scoreID").innerHTML = score;
 }
 
 function displayGuesses() {
+    // Exit function if array of guesses is empty
+    if (arrayOfGuesses.length == 0) {
+        document.getElementById("guessID").innerHTML = ".........";
+        return;
+    }
+
     // makes the lines for the word
-    let displayGuess = arrayOfGuesses[0]
+    let displayGuess = arrayOfGuesses[0];
     for (let i = 1; i < arrayOfGuesses.length; i++) {
         displayGuess += ", " + arrayOfGuesses[i];
     }
@@ -251,19 +297,15 @@ function subtractLife() {
 
 }
 
-
-
-
 function gameOver() {
     if (lives === 0) {
         let endGameUserInfo = prompt("Please enter your name.", "username") + ", your score is " + score + ".";
-        document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+        window.alert("Game Over! " + endGameUserInfo);
+        // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
 
         disableButtons();
-
+        reset();
     }
-
-
 }
 
 function disableButtons() {
@@ -321,11 +363,9 @@ function main() {
     generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
     answerArray = [];
     hangmanImages = 0;
-    console.log(answerArray)
-
+    // console.log(answerArray)
 
     generateButton();
-
     changeDefinition(generatedAnswer);
     wordSpace(generatedAnswer);
     // fillWords(generatedAnswer);
@@ -333,4 +373,6 @@ function main() {
 
 main();
 document.getElementById("resetButton").onclick = reset;
+
+
 
