@@ -76,6 +76,7 @@
                 x.style.display = "none";
             }
         }
+        
         function changeDefinition(generatedAnswer) {
             console.log(generatedAnswer);
             console.log(arrayOfDefs[generatedAnswer]);
@@ -205,6 +206,9 @@
                     window.alert("Congratulations! Are you ready for the next question?");
                 }, 1);
 
+                // Clear array of guess IDs
+                arrayOfGuesses = [];
+
                 generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
                 answerArray = [];
                 wordDisplay = "";
@@ -252,8 +256,14 @@
         }
 
         function displayGuesses() {
+            // Exit function if array of guesses is empty
+            if (arrayOfGuesses.length == 0) {
+                document.getElementById("guessID").innerHTML = ".........";
+                return;
+            }
+
             // makes the lines for the word
-            let displayGuess = arrayOfGuesses[0]
+            let displayGuess = arrayOfGuesses[0];
             for (let i = 1; i < arrayOfGuesses.length; i++) {
                 displayGuess += ", " + arrayOfGuesses[i];
             }
