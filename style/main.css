@@ -24,27 +24,15 @@ body{
 #buttons{
     text-align: center;
     float: bottom;
-    padding-top: 50px;
 }
 
 h1{
-<<<<<<< HEAD
-=======
-    font-family: "Comic Sans MS", "Times New Roman", sans-serif;
->>>>>>> 784c1d8d092d36c97ab1e508708296ffcbe95e35
     font-size: 3rem;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-=======
-p{
-    font-family: "Comic Sans MS", "Times New Roman", sans-serif;
-}
-
->>>>>>> 784c1d8d092d36c97ab1e508708296ffcbe95e35
 #life{
     text-align: center;
     padding: 2rem;
@@ -97,14 +85,8 @@ p{
     }
     #resetButton{
         border-radius: 25px;
-        background-color: white;
+        background-color: darksalmon;
     }
-<<<<<<< HEAD
-=======
-    h1, p {
-        font-family: "Georgia", 'Times New Roman', Times, serif;
-    }
->>>>>>> 784c1d8d092d36c97ab1e508708296ffcbe95e35
     h1 {
         font-size: 2rem;
         text-align: center;
@@ -125,7 +107,7 @@ p{
         font-size: 10px;
         text-align: center;
         border-radius: 25px;
-        background-color: white;
+        background-color: darksalmon;
     }
     #life{
         padding: 1rem;
