@@ -324,6 +324,10 @@
 
         function reset() {
 
+            document.getElementById("hangman").style.visibility = "hidden";
+            document.getElementById("guessID").innerHTML = ".........";
+            document.getElementById("lifeID").innerHTML = "7";
+            document.getElementById("scoreID").innerHTML = "0";
             document.getElementById("buttons").innerHTML = "";
             document.getElementById("guesses").innerHTML = "";
             main();
