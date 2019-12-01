@@ -94,6 +94,9 @@
 
         // sets up the lines for the word
         function wordSpace(answer) {
+            // Clear the guesses
+            clearGuesses();
+
             // makes the lines for the word
             for (let i = 0; i < answer.length; i++) {
                 answerArray[i] = " " + "_";
