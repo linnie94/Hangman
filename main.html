@@ -40,7 +40,7 @@
     </div>
 
     <input type="button" id="resetButton" value="Reset">
-<!--    <script src="js/javascript.js"></script>-->
+    <!--    <script src="js/javascript.js"></script>-->
     <!-- Todo: Delete all the js code and move it to js file-->
     <script>
         // for the testing purpose, only 4 words in the array.
@@ -102,8 +102,6 @@
                 answerArray[i] = " " + "_";
                 let guess = document.getElementById("guesses");
                 guess.append(answerArray[i]);
-
-
             }
         }
 
@@ -119,9 +117,10 @@
                     // answerArray is an array filled with blank spaces. It is global.
                     // answerArray is assigned the blank spaces in the function wordSpace.
                     numOfFilled++;
-                    console.log(numOfFilled);
                 }
             }
+            console.log('numOfFilled:', numOfFilled);
+
             // Redisplays the word lines with letters
             wordDisplay = "";
             for (let i = 0; i < generatedAnswer.length; i++) {
@@ -191,7 +190,7 @@
                     // It will console right or wrong
 
                     fillWords(buttonLetter)
-                    
+
                     generateNextAnswer();
 
                     displayGuesses();
@@ -211,20 +210,21 @@
             let buttonLetter = "";
             if (numOfFilled == answerArray.length) {
                 generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
-                console.log(generatedAnswer);
+                console.log('generatedAnswer:', generatedAnswer);
                 answerArray = [];
-                console.log(answerArray);
+                console.log('answerArray:', answerArray);
                 wordDisplay = "";
                 changeDefinition(generatedAnswer);
                 wordSpace(generatedAnswer);
-                window.alert("Congratulations! Are you ready for the next question?");
+                // window.alert("Congratulations! Are you ready for the next question?");
 
-                for(let i = 65; i< 90 ;i++) {
+                for (let i = 65; i < 90; i++) {
                     buttonLetter = String.fromCharCode(i);
                     document.getElementById(buttonLetter).style.visibility = "visible";
                 }
                 numOfFilled = 0;
             }
+
             return numOfFilled;
         }
 
@@ -333,7 +333,7 @@
 
         }
 
-        
+
         // Check if the answerArray is 'complete' (no more empty characters left)
         function checkComplete(answerArray) {
             if (answerArray.includes(" _")) {
@@ -351,10 +351,7 @@
 
                 disableButtons();
                 reset();
-
             }
-
-
         }
 
         function disableButtons() {
