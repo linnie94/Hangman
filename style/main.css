@@ -92,7 +92,7 @@ h1{
         margin: auto;
         font-size: small;
     }
-    #resetButton{
+    #resetButton,#scoreboardButton {
         border-radius: 25px;
         background-color: darksalmon;
     }
@@ -152,9 +152,9 @@ h1{
         display: none;
         background-color: cornflowerblue;
         position: fixed;
-        top: 11vh;
-        left: 46vw;
-        border: 5px solid blue;
+        top: 10vh;
+        left: 25vw;
+        border: 3px solid blue;
     }
 
 
