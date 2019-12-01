@@ -20,10 +20,11 @@
 #buttons{
     text-align: center;
     float: bottom;
+    padding-top: 50px;
 }
 
 h1{
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Comic Sans MS", "Times New Roman", sans-serif;
     font-size: 3rem;
     text-align: center;
     margin-top: 15px;
@@ -31,7 +32,7 @@ h1{
 }
 
 p{
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Comic Sans MS", "Times New Roman", sans-serif;
 }
 
 #life{
@@ -82,10 +83,10 @@ p{
     }
     #resetButton{
         border-radius: 25px;
-        background-color: darksalmon;
+        background-color: white;
     }
     h1, p {
-        font-family: "Comic Sans MS", 'Times New Roman', Times, serif;
+        font-family: "Georgia", 'Times New Roman', Times, serif;
     }
     h1 {
         font-size: 2rem;
@@ -107,7 +108,7 @@ p{
         font-size: 10px;
         text-align: center;
         border-radius: 25px;
-        background-color: darksalmon;
+        background-color: white;
     }
     #life{
         padding: 1rem;
