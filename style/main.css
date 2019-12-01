@@ -1,3 +1,7 @@
+body{
+    font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+}
+
 .btns{
     width: 50px;
     height: 50px;
@@ -23,15 +27,10 @@
 }
 
 h1{
-    font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 3rem;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 20px;
-}
-
-p{
-    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 #life{
@@ -74,6 +73,10 @@ p{
     /*#answerSpace{*/
     /*    font-size: 3rem;*/
     /*}*/
+
+    body{
+        font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+    }
     .btns{
         width: 50px;
         height: 50px;
@@ -83,9 +86,6 @@ p{
     #resetButton{
         border-radius: 25px;
         background-color: darksalmon;
-    }
-    h1, p {
-        font-family: "Comic Sans MS", 'Times New Roman', Times, serif;
     }
     h1 {
         font-size: 2rem;
