@@ -1,6 +1,7 @@
 .btns{
     width: 50px;
     height: 50px;
+    font-size: large;
 }
 
 #guesses{
@@ -74,11 +75,15 @@ p{
     /*    font-size: 3rem;*/
     /*}*/
     .btns{
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         margin: auto;
+        font-size: small;
     }
-
+    #resetButton{
+        border-radius: 25px;
+        background-color: darksalmon;
+    }
     h1, p {
         font-family: "Comic Sans MS", 'Times New Roman', Times, serif;
     }
@@ -97,9 +102,12 @@ p{
 
     }
     #toggle{
-        width: 50px;
-        height: 20px;
+        width: 40px;
+        height: 18px;
+        font-size: 10px;
+        text-align: center;
         border-radius: 25px;
+        background-color: darksalmon;
     }
     #life{
         padding: 1rem;
@@ -131,5 +139,6 @@ p{
         /*overflow: auto;*/
 
     }
+
 
 }
