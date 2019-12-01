@@ -3,32 +3,36 @@
     height: 50px;
 }
 
-
 #guesses{
     width: 100%;
     font-size: 4rem;
     text-align: center;
+    margin: auto;
 }
 
 .guessArea{
-    width: 100%;
+    width: 80rem;
+    margin: auto;
+    text-align: center;
 }
-
-
 
 #buttons{
     text-align: center;
     float: bottom;
 }
+
 h1{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size:5rem;
+    font-size: 3rem;
     text-align: center;
-
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
+
 p{
     font-family: "Comic Sans MS", cursive, sans-serif;
 }
+
 #life{
     text-align: center;
     padding: 2rem;
@@ -52,6 +56,17 @@ p{
 }
 #hangman{
     visibility: hidden;
+}
+
+#defContainer {
+    width: 50%;
+    position: relative;
+}
+
+#toggleDiv{
+    position: absolute;
+    left: 180px;
+    top: 2px;
 }
 
 @media screen and (max-width:600px) {
