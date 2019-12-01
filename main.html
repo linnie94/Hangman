@@ -119,17 +119,9 @@
                     numOfFilled++;
                 }
             }
-            console.log('numOfFilled:', numOfFilled);
 
             // Redisplays the word lines with letters
-            wordDisplay = "";
-            for (let i = 0; i < generatedAnswer.length; i++) {
-                // Loop from 0 to the length of the answer
-
-                // Create a new string that will hold an updated version of the displayed answer
-                wordDisplay += " " + answerArray[i];
-
-            }
+            wordDisplay = answerArray.join(" ");
             // When the loop is finish update the element with the updated display.
             document.getElementById("guesses").innerHTML = wordDisplay;
             return numOfFilled;
