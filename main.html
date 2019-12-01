@@ -199,7 +199,6 @@
         // Generate a new question and definition.
         // Bring hidden buttons back.
         function generateNextAnswer() {
-            let buttonLetter = "";
             if (numOfFilled === answerArray.length) {
                 // Set a very short timeout on the alert to let the guesses refresh
                 setTimeout(function () {
@@ -212,15 +211,20 @@
 
                 changeDefinition(generatedAnswer);
                 wordSpace(generatedAnswer);
-
-                for (let i = 65; i < 90; i++) {
-                    buttonLetter = String.fromCharCode(i);
-                    document.getElementById(buttonLetter).style.visibility = "visible";
-                }
+                enableAllButtons();
                 numOfFilled = 0;
             }
 
             return numOfFilled;
+        }
+
+        // Enable all hidden buttons 
+        function enableAllButtons() {
+            let buttonLetter = "";
+            for (let i = 65; i < 90; i++) {
+                buttonLetter = String.fromCharCode(i);
+                document.getElementById(buttonLetter).style.visibility = "visible";
+            }
         }
 
         function compareLetterWithAnswer(letter) {
