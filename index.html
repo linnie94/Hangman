@@ -361,7 +361,14 @@
 
         function gameOver() {
             if (lives === 0) {
-                let name = prompt("Please enter your name.", "username")
+                let name = "";
+                while(true) {
+                    name = prompt("Please enter your name.", "username");
+                    if(name != null) {
+                        break;
+                    }
+                }
+
                 let message = name + ", your score is " + score + ".";
                 window.alert("Game Over! " + message);
                 // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
