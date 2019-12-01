@@ -69,7 +69,7 @@ h1{
     top: 2px;
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width:600px) {
     /*#answerSpace{*/
     /*    font-size: 3rem;*/
     /*}*/
@@ -94,7 +94,7 @@ h1{
         margin: auto;
     }
     p {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
     #hint_div{
         width: 50%;
