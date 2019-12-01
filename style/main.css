@@ -69,14 +69,13 @@ h1{
     top: 2px;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:320px) {
     /*#answerSpace{*/
     /*    font-size: 3rem;*/
     /*}*/
 
     body{
         font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
-        font-size: 10rem;
     }
     .btns{
         width: 50px;
@@ -95,7 +94,7 @@ h1{
         margin: auto;
     }
     p {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
     #hint_div{
         width: 50%;
