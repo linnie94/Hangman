@@ -73,8 +73,9 @@ h1{
     display: none;
     background-color: cornflowerblue;
     position: fixed;
-    top: 10%;
-    left: 40%;
+    top: 11vh;
+    left: 46vw;
+    border: 5px solid blue;
 }
 
 @media screen and (max-width:600px) {
@@ -102,7 +103,7 @@ h1{
         margin: auto;
     }
     p {
-        font-size: 1.0rem;
+        font-size: 0.5rem;
     }
     #hint_div{
         width: 50%;
@@ -133,6 +134,10 @@ h1{
         /*padding-left: 100%;*/
 
     }
+    #guessArea{
+
+        /*padding-left: 100%*/
+    }
     #guesses{
         width: 8rem;
         font-size: medium;
@@ -142,6 +147,14 @@ h1{
         height: 8rem;
         /*overflow: auto;*/
 
+    }
+    #scoreboard{
+        display: none;
+        background-color: cornflowerblue;
+        position: fixed;
+        top: 11vh;
+        left: 46vw;
+        border: 5px solid blue;
     }
 
 
