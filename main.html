@@ -208,15 +208,18 @@
         // Bring hidden buttons back.
         function generateNextAnswer() {
             let buttonLetter = "";
-            if (numOfFilled == answerArray.length) {
+            if (numOfFilled === answerArray.length) {
+                // Set a very short timeout on the alert to let the guesses refresh
+                setTimeout(function () {
+                    window.alert("Congratulations! Are you ready for the next question?");
+                }, 1);
+
                 generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
-                console.log('generatedAnswer:', generatedAnswer);
                 answerArray = [];
-                console.log('answerArray:', answerArray);
                 wordDisplay = "";
+
                 changeDefinition(generatedAnswer);
                 wordSpace(generatedAnswer);
-                // window.alert("Congratulations! Are you ready for the next question?");
 
                 for (let i = 65; i < 90; i++) {
                     buttonLetter = String.fromCharCode(i);
