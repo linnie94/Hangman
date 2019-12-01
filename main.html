@@ -323,8 +323,15 @@
 
         }
 
-
-
+        
+        // Check if the answerArray is 'complete' (no more empty characters left)
+        function checkComplete(answerArray) {
+            if (answerArray.includes(" _")) {
+                return false;
+            } else {
+                return true;
+            }
+        }
 
         function gameOver() {
             if (lives === 0) {
