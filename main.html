@@ -85,6 +85,13 @@
 
         }
 
+        // Clear the 'guesses' element before setting up a new word
+        function clearGuesses() {
+            answersArray = [];
+            let guess = document.getElementById("guesses");
+            guess.innerHTML = "";
+        }
+
         // sets up the lines for the word
         function wordSpace(answer) {
             // makes the lines for the word
