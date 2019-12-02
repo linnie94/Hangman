@@ -311,7 +311,7 @@
             // This is supposed the choose a random word.
             // This word is the one that users will be guessing
 
-            let i = Math.floor(Math.random() * 4);  // i: 0~3 for the testing purpose
+            let i = Math.floor(Math.random() * arrayOfAnswers.length);  // i: 0~3 for the testing purpose
 
             document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
             document.getElementById("answerID").innerHTML = arrayOfAnswers[i];
@@ -438,10 +438,16 @@
                 "TATTOO": "a form of body modification where a design is made by inserting ink",
                 "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
                 "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
-                "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
+                "SYSTEM": "a group of related parts that work together as a whole for a particular purpose",
+                "KIOSK": "a small building in the street, where newspapers, sweets etc are sold",
+                "MEMENTO": "a small thing that you keep to remind you of someone or something",
+                "ZOMBIE": "someone who moves very slowly and does not seem to be thinking about what they are doing, especially because they are very tired",
+                "OXYGEN": "a gas that has no colour or smell, is present in air, and is necessary for most animals and plants to live. It is a chemical element",
+                "FISHHOOK": "a small hook with a sharp point at one end, that is fastened to the end of a long string in order to catch fish",
+                "CRYPT": "a room under a church, used in the past for burying people"
             };
 
-            arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
+            arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
             // This is a list of all he possible words that can be chosen
 
             answerChr = [];
