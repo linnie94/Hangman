@@ -134,10 +134,6 @@ h1{
         /*padding-left: 100%;*/
 
     }
-    #guessArea{
-
-        /*padding-left: 100%*/
-    }
     #guesses{
         width: 8rem;
         font-size: medium;
@@ -209,10 +205,6 @@ h1{
             height: auto;
             /*padding-left: 100%;*/
     
-        }
-        #guessArea{
-    
-            /*padding-left: 100%*/
         }
         #guesses{
             width: 8rem;

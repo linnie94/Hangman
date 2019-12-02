@@ -17,8 +17,6 @@
         <input type="button" id="scoreboardButton" value="Ranking">
         <div id="scoreboardDiv">
             <p id="name"></p>
-            <!-- <input id="name" type="text" placeholder="Enter your name..."> -->
-            <!-- <button onclick="saveScore()">Save Score</button> -->
             <table id="scoreboard">
                 <tr>
                     <th>Name</th>
@@ -396,6 +394,20 @@
         // TODO: let boundary for score - make sure it doesn't go down below zero
 
         function reset() {
+            arrayOfDefs;
+            arrayOfAnswers;
+            answerChr;
+            arrayOfCorrectGuesses;
+            arrayOfGuesses;
+            userGuess;
+            hangmanImages;
+            lives;
+            score;
+            username = "";
+            arrayOfGuesses = [];
+            answerArray = [];
+            wordDisplay = "";
+            numOfFilled = 0;
 
             document.getElementById("hangman").style.visibility = "hidden";
             document.getElementById("guessID").innerHTML = ".........";
@@ -513,11 +525,6 @@
         }
 
         window.onload = updateScores();
-    </script>
-
-
-    <script>
-
     </script>
 
 </body>
