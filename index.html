@@ -227,7 +227,7 @@
                 generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
                 answerArray = [];
                 wordDisplay = "";
-
+                document.getElementById("wordDefID").style.display = "none";
                 changeDefinition(generatedAnswer);
                 wordSpace(generatedAnswer);
                 enableAllButtons();
@@ -373,7 +373,7 @@
                 document.getElementById("name").innerHTML = name;
                 console.log(name);
                 console.log(score);
-                displayScoreboard();
+                // displayScoreboard();
                 saveScore();
                 updateScores();
                 disableButtons();
@@ -394,15 +394,15 @@
         // TODO: let boundary for score - make sure it doesn't go down below zero
 
         function reset() {
-            arrayOfDefs;
-            arrayOfAnswers;
-            answerChr;
-            arrayOfCorrectGuesses;
-            arrayOfGuesses;
-            userGuess;
-            hangmanImages;
-            lives;
-            score;
+            arrayOfDefs = [];
+            arrayOfAnswers = [];
+            answerChr = [];
+            arrayOfCorrectGuesses = [];
+            arrayOfGuesses = [];
+            userGuess = "";
+            hangmanImages = 0;
+            lives = 0;
+            score = 0;
             username = "";
             arrayOfGuesses = [];
             answerArray = [];
@@ -416,6 +416,8 @@
             document.getElementById("buttons").innerHTML = "";
             document.getElementById("guesses").innerHTML = "";
             document.getElementById("name").style.visibility = "hidden";
+            document.getElementById("wordDefID").style.display = "none";
+            displayScoreboard();
             main();
         }
 
@@ -449,6 +451,7 @@
 
             arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
             // This is a list of all he possible words that can be chosen
+            console.log(arrayOfAnswers);
 
             answerChr = [];
 
