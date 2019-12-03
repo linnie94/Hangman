@@ -8,6 +8,8 @@ body{
     height: 50px;
     font-size: large;
     border-radius: 15px;
+    border-width: 3px;
+    border-color: black;
 }
 
 #guesses{
@@ -86,10 +88,6 @@ h1{
 }
 
 @media screen and (max-width:600px) {
-    /*#answerSpace{*/
-    /*    font-size: 3rem;*/
-    /*}*/
-
     body{
         font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
     }
@@ -98,6 +96,8 @@ h1{
         height: 50px;
         margin: auto;
         font-size: small;
+        background-color: white;
+        border-width: 1px;
     }
     #resetButton,#scoreboardButton {
         border-radius: 25px;
