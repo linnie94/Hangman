@@ -101,6 +101,7 @@ function generateButton() {
         // Add an event to the button once it is made.
         // The event will print every time it is clicked.
         button.btn.addEventListener("click", function () {
+            // Hide scoreboard on button click
             if (document.getElementById("scoreboard").style.display == "block") {
                 document.getElementById("scoreboard").style.display = "none";
             }
