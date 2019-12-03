@@ -101,6 +101,10 @@ function generateButton() {
         // Add an event to the button once it is made.
         // The event will print every time it is clicked.
         button.btn.addEventListener("click", function () {
+            if (document.getElementById("scoreboard").style.display == "block") {
+                document.getElementById("scoreboard").style.display = "none";
+            }
+
             document.getElementById(buttonLetter).disabled = true;
             // document.getElementById(buttonLetter).style.borderColor = 'white';
             // document.getElementById(buttonLetter).style.backgroundColor='red';
@@ -299,7 +303,7 @@ function gameOver() {
     window.alert("Game Over! " + message);
     // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
     document.getElementById("name").innerHTML = name;
-    // displayScoreboard();
+    displayScoreboard();
     saveScore();
     updateScores();
     disableButtons();
