@@ -30,7 +30,7 @@
         <p id="hint">HINT</p>
         <p id="wordDefID"> </p>
         <!-- allow user the option to see or not see the definition -->
-        <button id="toggle" onclick=animate_toggle()>Hint!</button>
+        <button id="toggle" onclick="animate_toggle()">Hint!</button>
     </div>
 
     <!-- Area where all the documentation of the game process -->
@@ -67,6 +67,22 @@
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
     <!-- Import our Firebase Javascript file -->
     <script src="js/firebase.js"></script>
+    <script>
+        function animate_toggle() {
+            let x = document.getElementById("wordDefID");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
+
+        }
+
+
+        document.getElementById('toggle').onclick(animate_toggle);
+
+    </script>
 </body>
 
 </html>

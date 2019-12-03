@@ -19,15 +19,7 @@ let numOfFilled = 0;
 let username = "";
 const letters = alpha();
 
-function animate_toggle() {
-    let x = document.getElementById("wordDefID");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    }
-    else {
-        x.style.display = "none";
-    }
-}
+
 
 function changeDefinition(generatedAnswer) {
     console.log(generatedAnswer);
@@ -138,7 +130,7 @@ function generateButton() {
             // This function is to check whether a correct letter was selected or not.
             // It will console right or wrong
 
-            fillWords(buttonLetter)
+            fillWords(buttonLetter);
 
             setTimeout(generateNextAnswer, 300);
 
@@ -372,7 +364,6 @@ function displayScoreboard() {
         board.style.display = "block";
     }
 }
-
 
 function main() {
     arrayOfDefs = {
