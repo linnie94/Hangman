@@ -20,14 +20,11 @@ let username = "";
 const letters = alpha();
 
 
-
+// Changes the definition based on the word
 function changeDefinition(generatedAnswer) {
     console.log(generatedAnswer);
     console.log(arrayOfDefs[generatedAnswer]);
-    // changes the definition based on the word
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
-
-
 }
 
 // Clear the 'guesses' element before setting up a new word
@@ -37,12 +34,12 @@ function clearGuesses() {
     guess.innerHTML = "";
 }
 
-// sets up the lines for the word
+// Sets up the lines for the word
 function wordSpace(answer) {
     // Clear the guesses
     clearGuesses();
 
-    // makes the lines for the word
+    // Makes the lines for the word
     for (let i = 0; i < answer.length; i++) {
         answerArray[i] = " " + "_";
         let guess = document.getElementById("guesses");
@@ -50,7 +47,7 @@ function wordSpace(answer) {
     }
 }
 
-// fills the word slots if letter correct
+// Fills the word slots if letter correct
 function fillWords(guess) {
     for (let i = 0; i < generatedAnswer.length; i++) {
         // Loop from 0 to the length of the answer
@@ -62,13 +59,14 @@ function fillWords(guess) {
             // answerArray is an array filled with blank spaces. It is global.
             // answerArray is assigned the blank spaces in the function wordSpace.
             numOfFilled++;
-        }
+        } D
     }
 
     // Redisplays the word lines with letters
     wordDisplay = answerArray.join(" ");
     // When the loop is finish update the element with the updated display.
     document.getElementById("guesses").innerHTML = wordDisplay;
+
     return numOfFilled;
 }
 
@@ -90,29 +88,25 @@ function alpha() {
     // Return a list of capital letters from A - Z
 }
 
+// Generate the alphabet buttons to be used for the game
 function generateButton() {
-
+    // We are looping from 0 to 26 because we want to add every button the html page.
+    // letters is a list of the entire alphabet; global variable
     for (let i = 0; i < 26; i++) {
-        // We are looping from 0 to 26 because we want to add every button the html page.
-        // letters is a list of the entire alphabet; global variable
-
         let buttonLetter = letters[i];
 
-        let button = new Button(buttonLetter);
         // Create a button in an object constructor
-        // console.log(button);
+        let button = new Button(buttonLetter);
 
-
+        // Add an event to the button once it is made.
+        // The event will print every time it is clicked.
         button.btn.addEventListener("click", function () {
-            // Add an event to the button once it is made.
-            // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
-            // The event will print every time it is clicked.
-
             document.getElementById(buttonLetter).disabled = true;
             // document.getElementById(buttonLetter).style.borderColor = 'white';
             // document.getElementById(buttonLetter).style.backgroundColor='red';
             // document.getElementById(buttonLetter).style.opacity='0.4';
             // document.getElementById(buttonLetter).style.visibility = "hidden";
+
             /*
             MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
 
@@ -124,13 +118,13 @@ function generateButton() {
 
             And when the game ends because the user won/lost we can then create a function to
             disable all active buttons.
-
             */
+
             arrayOfGuesses.push(buttonLetter);
 
-            compareLetterWithAnswer(buttonLetter);
             // This function is to check whether a correct letter was selected or not.
             // It will console right or wrong
+            compareLetterWithAnswer(buttonLetter);
 
             fillWords(buttonLetter);
 
@@ -138,9 +132,9 @@ function generateButton() {
 
             displayGuesses();
 
-            gameOver();
             // Whenever any button is clicked we want to check to make sure the user hasn't reached zero lives yet.
             // If the user reaches zero lives the game should end.
+            gameOver();
         })
     }
 }
@@ -185,30 +179,30 @@ function enableAllButtons() {
     }
 }
 
+// The dummyWord is all caps because all of the buttons are uppercased. 
+// This can be changed how the group likes it with methods .toLowerCase()
 function compareLetterWithAnswer(letter) {
-    // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
-
+    // This checks the letter, but it also checks whether is it capitalized or not.
     if (!generatedAnswer.includes(letter)) {
-        // This checks the letter, but it also checks whether is it capitalized or not.
         // console.log(">:) That was incorrect.");
 
         // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
-        subtractLife();
         // Decrease the amount of lives the user has left.
+        subtractLife();
 
-        loseScore();
         // Remove points from the user.
+        loseScore();
 
-        hangmanImage();
         //adds hangman
+        hangmanImage();
     } else {
         earnScore(letter);
         // console.log("That was the right letter.");
-
     }
     document.getElementById("scoreID").innerHTML = score;
 }
 
+// Display all guesses used
 function displayGuesses() {
     // Exit function if array of guesses is empty
     if (arrayOfGuesses.length == 0) {
@@ -226,9 +220,9 @@ function displayGuesses() {
 }
 
 
+// This object constructer takes in one argument. alphaLetter -> string
+// The argument is the letter of this button.
 function Button(alphaLetter) {
-    // This object constructer takes in one argument. alphaLetter -> string
-    // The argument is the letter of this button.
     this.btn = document.createElement("button");
     this.btn.id = alphaLetter;
     this.btn.classList.add("btns");
@@ -246,19 +240,16 @@ function Button(alphaLetter) {
 // myFunction(x) // Call listener function at run time
 // x.addListener(myFunction) // Attach listener function on state changes
 
-function disPlayDefinition() {
-    // This is supposed the choose a random word.
-    // This word is the one that users will be guessing
 
+// This is supposed the choose a random word.
+// This word is the one that users will be guessing
+function disPlayDefinition() {
     let i = Math.floor(Math.random() * arrayOfAnswers.length);  // i: 0~3 for the testing purpose
 
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
     document.getElementById("answerID").innerHTML = arrayOfAnswers[i];
     return i;
 }
-
-
-
 
 
 function earnScore(guess) {
