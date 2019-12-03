@@ -1,5 +1,6 @@
 body{
     font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+    background-image: url("imgs/bkgrd.jpg");
 }
 
 .btns{
@@ -14,6 +15,7 @@ body{
     font-size: 4rem;
     text-align: center;
     margin: auto;
+    padding-bottom: 50px;
 }
 
 .guessArea{
@@ -142,6 +144,7 @@ h1{
     #guesses{
         width: 8rem;
         font-size: medium;
+        padding-bottom: 0;
     }
     #buttons{
         /*width: 20rem;*/
