@@ -350,6 +350,7 @@ function reset() {
     document.getElementById("guesses").innerHTML = "";
     document.getElementById("name").style.visibility = "hidden";
     document.getElementById("wordDefID").style.display = "none";
+    document.getElementsByClassName('btns').disabled= false;
     displayScoreboard();
     main();
 }
