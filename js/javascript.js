@@ -272,7 +272,9 @@ function earnScore(guess) {
 
 // Decrement score when wrong button is clicked
 function loseScore() {
-    score--;
+    if (score > 0) {
+        score--;
+    }
 }
 
 // If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
