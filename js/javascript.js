@@ -72,12 +72,14 @@ function fillWords(guess) {
     return numOfFilled;
 }
 
+// Display the hangman image
 function hangmanImage() {
     document.getElementById("hangman").style.visibility = "visible";
     document.getElementById("hangman").src = "images/hangman_" + hangmanImages + ".gif";
     hangmanImages += 1;
 }
 
+// Create alphabets from A-Z
 function alpha() {
     // This is used to the alphabet
     let alphabet = [];
@@ -280,11 +282,12 @@ function earnScore(guess) {
 
 }
 
+// Decrement score when wrong button is clicked
 function loseScore() {
     score--;
 }
 
-
+// Decrement life when wrong button is clicked
 function subtractLife() {
     // If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
     lives -= 1;
@@ -294,12 +297,13 @@ function subtractLife() {
 
 }
 
+// Check end game condition
 function gameOver() {
     if (lives === 0) {
         let name = "";
-        while(true) {
+        while (true) {
             name = prompt("Please enter your name.", "username");
-            if(name != null) {
+            if (name != null) {
                 break;
             }
         }
@@ -318,8 +322,9 @@ function gameOver() {
     }
 }
 
+
+// Function to disable all buttons.
 function disableButtons() {
-    // Function to disable all buttons.
     for (let i = 0; i < 26; i++) {
         // letters is an array of the alphabet
         document.getElementById(letters[i]).disabled = true;
@@ -327,9 +332,7 @@ function disableButtons() {
 }
 
 
-// TODO: reset button
-// TODO: let boundary for score - make sure it doesn't go down below zero
-
+// Reset button behaviour
 function reset() {
     arrayOfDefs = [];
     arrayOfAnswers = [];
@@ -354,12 +357,12 @@ function reset() {
     document.getElementById("guesses").innerHTML = "";
     document.getElementById("name").style.visibility = "hidden";
     document.getElementById("wordDefID").style.display = "none";
-    document.getElementsByClassName('btns').disabled= false;
+    document.getElementsByClassName('btns').disabled = false;
     // displayScoreboard();
     main();
 }
 
-
+// Display the scoreboard
 function displayScoreboard() {
     let board = document.getElementById("scoreboard");
     if (board.style.display === "block") {
