@@ -174,7 +174,7 @@ function generateNextAnswer() {
 // Enable all hidden buttons
 function enableAllButtons() {
     let buttonLetter = "";
-    for (let i = 65; i < 90; i++) {
+    for (let i = 65; i < 91; i++) {
         buttonLetter = String.fromCharCode(i);
         document.getElementById(buttonLetter).disabled = false;
         // document.getElementById(buttonLetter).style.backgroundColor='white';
