@@ -107,9 +107,9 @@ function generateButton() {
             // The event will print every time it is clicked.
 
             document.getElementById(buttonLetter).disabled = true;
-            document.getElementById(buttonLetter).style.borderColor = 'white';
-            document.getElementById(buttonLetter).style.backgroundColor='red';
-            document.getElementById(buttonLetter).style.opacity='0.4';
+            // document.getElementById(buttonLetter).style.borderColor = 'white';
+            // document.getElementById(buttonLetter).style.backgroundColor='red';
+            // document.getElementById(buttonLetter).style.opacity='0.4';
             // document.getElementById(buttonLetter).style.visibility = "hidden";
             /*
             MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
@@ -176,6 +176,10 @@ function enableAllButtons() {
     for (let i = 65; i < 90; i++) {
         buttonLetter = String.fromCharCode(i);
         document.getElementById(buttonLetter).disabled = false;
+        // document.getElementById(buttonLetter).style.backgroundColor='white';
+        // document.getElementById(buttonLetter).style.opacity='1.0';
+        // document.getElementById(buttonLetter).style.borderWidth='3px';
+        // document.getElementById(buttonLetter).style.borderColor='black';
     }
 }
 
