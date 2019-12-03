@@ -22,8 +22,8 @@ const letters = alpha();
 
 // Changes the definition based on the word
 function changeDefinition(generatedAnswer) {
-    console.log(generatedAnswer);
-    console.log(arrayOfDefs[generatedAnswer]);
+    // console.log(generatedAnswer);
+    // console.log(arrayOfDefs[generatedAnswer]);
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
 }
 
@@ -381,7 +381,7 @@ function main() {
 
     arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
     // This is a list of all he possible words that can be chosen
-    console.log(arrayOfAnswers);
+    // console.log(arrayOfAnswers);
 
     answerChr = [];
 

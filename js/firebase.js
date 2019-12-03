@@ -31,11 +31,11 @@ function saveScore() {
             score: score
         })
             .then(function () {
-                console.log("Document successfully written!");
+                // console.log("Document successfully written!");
                 updateScores();
             })
             .catch(function (error) {
-                console.error("Error writing document: ", error);
+                // console.error("Error writing document: ", error);
             });
     } else {
         alert('Please enter a name');
