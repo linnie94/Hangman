@@ -175,7 +175,7 @@ function enableAllButtons() {
     let buttonLetter = "";
     for (let i = 65; i < 90; i++) {
         buttonLetter = String.fromCharCode(i);
-        document.getElementById(buttonLetter).style.visibility = "visible";
+        document.getElementById(buttonLetter).disabled = false;
     }
 }
 
