@@ -114,7 +114,11 @@ function generateButton() {
             // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
             // The event will print every time it is clicked.
 
-            document.getElementById(buttonLetter).style.visibility = "hidden";
+            document.getElementById(buttonLetter).disabled = true;
+            document.getElementById(buttonLetter).style.borderColor = 'white';
+            document.getElementById(buttonLetter).style.backgroundColor='red';
+            document.getElementById(buttonLetter).style.opacity='0.4';
+            // document.getElementById(buttonLetter).style.visibility = "hidden";
             /*
             MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
 
