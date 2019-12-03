@@ -2,11 +2,8 @@
 // hint
 let arrayOfDefs;
 let arrayOfAnswers;
-
 let answerChr;
-
 let arrayOfCorrectGuesses;
-
 let arrayOfGuesses;
 let userGuess;
 let hangmanImages;
@@ -19,7 +16,7 @@ let generatedAnswer;
 let answerArray;
 let wordDisplay = "";
 let numOfFilled = 0;
-
+let username = "";
 const letters = alpha();
 
 function animate_toggle() {
@@ -167,7 +164,7 @@ function generateNextAnswer() {
         generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
         answerArray = [];
         wordDisplay = "";
-
+        document.getElementById("wordDefID").style.display = "none";
         changeDefinition(generatedAnswer);
         wordSpace(generatedAnswer);
         enableAllButtons();
@@ -251,7 +248,7 @@ function disPlayDefinition() {
     // This is supposed the choose a random word.
     // This word is the one that users will be guessing
 
-    let i = Math.floor(Math.random() * 4);  // i: 0~3 for the testing purpose
+    let i = Math.floor(Math.random() * arrayOfAnswers.length);  // i: 0~3 for the testing purpose
 
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
     document.getElementById("answerID").innerHTML = arrayOfAnswers[i];
@@ -299,10 +296,23 @@ function subtractLife() {
 
 function gameOver() {
     if (lives === 0) {
-        let endGameUserInfo = prompt("Please enter your name.", "username") + ", your score is " + score + ".";
-        window.alert("Game Over! " + endGameUserInfo);
-        // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+        let name = "";
+        while(true) {
+            name = prompt("Please enter your name.", "username");
+            if(name != null) {
+                break;
+            }
+        }
 
+        let message = name + ", your score is " + score + ".";
+        window.alert("Game Over! " + message);
+        // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+        document.getElementById("name").innerHTML = name;
+        console.log(name);
+        console.log(score);
+        // displayScoreboard();
+        saveScore();
+        updateScores();
         disableButtons();
         reset();
     }
@@ -321,6 +331,20 @@ function disableButtons() {
 // TODO: let boundary for score - make sure it doesn't go down below zero
 
 function reset() {
+    arrayOfDefs = [];
+    arrayOfAnswers = [];
+    answerChr = [];
+    arrayOfCorrectGuesses = [];
+    arrayOfGuesses = [];
+    userGuess = "";
+    hangmanImages = 0;
+    lives = 0;
+    score = 0;
+    username = "";
+    arrayOfGuesses = [];
+    answerArray = [];
+    wordDisplay = "";
+    numOfFilled = 0;
 
     document.getElementById("hangman").style.visibility = "hidden";
     document.getElementById("guessID").innerHTML = ".........";
@@ -328,12 +352,22 @@ function reset() {
     document.getElementById("scoreID").innerHTML = "0";
     document.getElementById("buttons").innerHTML = "";
     document.getElementById("guesses").innerHTML = "";
+    document.getElementById("name").style.visibility = "hidden";
+    document.getElementById("wordDefID").style.display = "none";
+    displayScoreboard();
     main();
-
 }
 
 
-
+function displayScoreboard() {
+    let board = document.getElementById("scoreboard");
+    if (board.style.display === "block") {
+        board.style.display = "none";
+    }
+    else {
+        board.style.display = "block";
+    }
+}
 
 
 function main() {
@@ -343,11 +377,18 @@ function main() {
         "TATTOO": "a form of body modification where a design is made by inserting ink",
         "ELECTRICITY": "the set of physical phenomena associated with the presence and motion of electric charge",
         "COMMITTEE": "a group of people chosen to do a particular job, make decisions",
-        "SYSTEM": "a group of related parts that work together as a whole for a particular purpose"
+        "SYSTEM": "a group of related parts that work together as a whole for a particular purpose",
+        "KIOSK": "a small building in the street, where newspapers, sweets etc are sold",
+        "MEMENTO": "a small thing that you keep to remind you of someone or something",
+        "ZOMBIE": "someone who moves very slowly and does not seem to be thinking about what they are doing, especially because they are very tired",
+        "OXYGEN": "a gas that has no colour or smell, is present in air, and is necessary for most animals and plants to live. It is a chemical element",
+        "FISHHOOK": "a small hook with a sharp point at one end, that is fastened to the end of a long string in order to catch fish",
+        "CRYPT": "a room under a church, used in the past for burying people"
     };
 
-    arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM"];
+    arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
     // This is a list of all he possible words that can be chosen
+    console.log(arrayOfAnswers);
 
     answerChr = [];
 
@@ -373,6 +414,5 @@ function main() {
 
 main();
 document.getElementById("resetButton").onclick = reset;
-
-
+document.getElementById("scoreboardButton").onclick = displayScoreboard;
 
