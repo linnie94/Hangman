@@ -22,8 +22,7 @@ const letters = alpha();
 
 // Changes the definition based on the word
 function changeDefinition(generatedAnswer) {
-    // console.log(generatedAnswer);
-    // console.log(arrayOfDefs[generatedAnswer]);
+
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
 }
 
@@ -111,20 +110,9 @@ function generateButton() {
             document.getElementById(buttonLetter).style.borderColor = 'white';
             document.getElementById(buttonLetter).style.backgroundColor='red';
             document.getElementById(buttonLetter).style.opacity='0.4';
-            // document.getElementById(buttonLetter).style.visibility = "hidden";
 
-            /*
-            MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
 
-            First, they all start off having the class: unclicked , meaning they're are still
-            active buttons.
 
-            Once they're clicked we should change the class to clicked. So any button with this
-            class will have it's style changed to hidden in the CSS file.
-
-            And when the game ends because the user won/lost we can then create a function to
-            disable all active buttons.
-            */
 
             arrayOfGuesses.push(buttonLetter);
 
@@ -190,7 +178,7 @@ function enableAllButtons() {
 function compareLetterWithAnswer(letter) {
     // This checks the letter, but it also checks whether is it capitalized or not.
     if (!generatedAnswer.includes(letter)) {
-        // console.log(">:) That was incorrect.");
+
 
         // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
         // Decrease the amount of lives the user has left.
@@ -203,7 +191,7 @@ function compareLetterWithAnswer(letter) {
         hangmanImage();
     } else {
         earnScore(letter);
-        // console.log("That was the right letter.");
+
     }
     document.getElementById("scoreID").innerHTML = score;
 }
@@ -305,7 +293,7 @@ function gameOver() {
 
     let message = name + ", your score is " + score + ".";
     window.alert("Game Over! " + message);
-    // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+
     document.getElementById("name").innerHTML = name;
     displayScoreboard();
     saveScore();
@@ -348,7 +336,7 @@ function reset() {
     document.getElementById("name").style.visibility = "hidden";
     document.getElementById("wordDefID").style.display = "none";
     document.getElementsByClassName('btns').disabled = false;
-    // displayScoreboard();
+
     main();
 }
 
@@ -381,7 +369,7 @@ function main() {
 
     arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
     // This is a list of all he possible words that can be chosen
-    // console.log(arrayOfAnswers);
+
 
     answerChr = [];
 
@@ -397,12 +385,12 @@ function main() {
     generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
     answerArray = [];
     hangmanImages = 0;
-    // console.log(answerArray)
+
 
     generateButton();
     changeDefinition(generatedAnswer);
     wordSpace(generatedAnswer);
-    // fillWords(generatedAnswer);
+
 }
 
 main();
