@@ -21,7 +21,7 @@ let db = firebase.firestore();
 
 function saveScore() {
     // Get name from input box
-    let name = document.getElementById('name').value;
+    let name = document.getElementById('name').innerHTML;
 
     // Make sure name has a value, if not send alert.
     if (name !== "") {
