@@ -251,26 +251,19 @@ function disPlayDefinition() {
     return i;
 }
 
-
+// One argument; guess; a letter
+// If guess appears in generated answer than add one to score.
 function earnScore(guess) {
     /*
-    One argument; guess; a letter
-
-    If guess appears in generated answer than add one to score.
-
     TO-MAYBE-DO: This can be done better by placing all the correct letters in an array.
     Once we figure out how many times a letter appears in the array we remove it.
     This will prevent us having to go over the same length list every time.
-
     */
     for (let i = 0; i < generatedAnswer.length; i++) {
         if (generatedAnswer[i] == guess) {
             score++;
         }
     }
-
-    // TO-DO: Add an element the HTML that holds the current score of the user.
-
 }
 
 // Decrement score when wrong button is clicked
@@ -278,41 +271,40 @@ function loseScore() {
     score--;
 }
 
-// Decrement life when wrong button is clicked
+// If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
 function subtractLife() {
-    // If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
-    lives -= 1;
     // Subtract lives by 1
-    document.getElementById("lifeID").innerHTML = lives;
-    // Change lifeID to represnt how many lives are left.
+    lives -= 1;
 
+    // Change lifeID to represnt how many lives are left.
+    document.getElementById("lifeID").innerHTML = lives;
 }
 
 // Check end game condition
 function gameOver() {
-    if (lives === 0) {
-        let name = "";
-        while (true) {
-            name = prompt("Please enter your name.", "username");
-            if (name != null) {
-                break;
-            }
-        }
-
-        let message = name + ", your score is " + score + ".";
-        window.alert("Game Over! " + message);
-        // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
-        document.getElementById("name").innerHTML = name;
-        console.log(name);
-        console.log(score);
-        // displayScoreboard();
-        saveScore();
-        updateScores();
-        disableButtons();
-        reset();
+    // Place end condition first to tidy up code
+    if (lives > 0) {
+        return;
     }
-}
+    
+    let name = "";
+    while (true) {
+        name = prompt("Please enter your name.", "username");
+        if (name != null) {
+            break;
+        }
+    }
 
+    let message = name + ", your score is " + score + ".";
+    window.alert("Game Over! " + message);
+    // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
+    document.getElementById("name").innerHTML = name;
+    // displayScoreboard();
+    saveScore();
+    updateScores();
+    disableButtons();
+    reset();
+}
 
 // Function to disable all buttons.
 function disableButtons() {
@@ -321,7 +313,6 @@ function disableButtons() {
         document.getElementById(letters[i]).disabled = true;
     }
 }
-
 
 // Reset button behaviour
 function reset() {
