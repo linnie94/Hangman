@@ -278,22 +278,23 @@ function subtractLife() {
 function gameOver() {
     if (lives === 0) {
         let name = "";
-        while(true) {
+        while (true) {
             name = prompt("Please enter your name.", "username");
-            if(name != null) {
+            if (name != null) {
                 break;
             }
         }
 
-    let message = name + ", your score is " + score + ".";
-    window.alert("Game Over! " + message);
+        let message = name + ", your score is " + score + ".";
+        window.alert("Game Over! " + message);
 
-    document.getElementById("name").innerHTML = name;
-    displayScoreboard();
-    saveScore();
-    updateScores();
-    disableButtons();
-    reset();
+        document.getElementById("name").innerHTML = name;
+        displayScoreboard();
+        saveScore();
+        updateScores();
+        disableButtons();
+        reset();
+    }
 }
 
 // Function to disable all buttons.
@@ -386,6 +387,7 @@ function main() {
     wordSpace(generatedAnswer);
 
 }
+
 
 main();
 document.getElementById("resetButton").onclick = reset;
