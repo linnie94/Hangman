@@ -20,14 +20,10 @@ let username = "";
 const letters = alpha();
 
 
-
+// Changes the definition based on the word
 function changeDefinition(generatedAnswer) {
-    console.log(generatedAnswer);
-    console.log(arrayOfDefs[generatedAnswer]);
-    // changes the definition based on the word
+
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[generatedAnswer];
-
-
 }
 
 // Clear the 'guesses' element before setting up a new word
@@ -37,12 +33,12 @@ function clearGuesses() {
     guess.innerHTML = "";
 }
 
-// sets up the lines for the word
+// Sets up the lines for the word
 function wordSpace(answer) {
     // Clear the guesses
     clearGuesses();
 
-    // makes the lines for the word
+    // Makes the lines for the word
     for (let i = 0; i < answer.length; i++) {
         answerArray[i] = " " + "_";
         let guess = document.getElementById("guesses");
@@ -50,7 +46,7 @@ function wordSpace(answer) {
     }
 }
 
-// fills the word slots if letter correct
+// Fills the word slots if letter correct
 function fillWords(guess) {
     for (let i = 0; i < generatedAnswer.length; i++) {
         // Loop from 0 to the length of the answer
@@ -69,15 +65,18 @@ function fillWords(guess) {
     wordDisplay = answerArray.join(" ");
     // When the loop is finish update the element with the updated display.
     document.getElementById("guesses").innerHTML = wordDisplay;
+
     return numOfFilled;
 }
 
+// Display the hangman image
 function hangmanImage() {
     document.getElementById("hangman").style.visibility = "visible";
     document.getElementById("hangman").src = "images/hangman_" + hangmanImages + ".gif";
     hangmanImages += 1;
 }
 
+// Create alphabets from A-Z
 function alpha() {
     // This is used to the alphabet
     let alphabet = [];
@@ -88,47 +87,38 @@ function alpha() {
     // Return a list of capital letters from A - Z
 }
 
+// Generate the alphabet buttons to be used for the game
 function generateButton() {
-
+    // We are looping from 0 to 26 because we want to add every button the html page.
+    // letters is a list of the entire alphabet; global variable
     for (let i = 0; i < 26; i++) {
-        // We are looping from 0 to 26 because we want to add every button the html page.
-        // letters is a list of the entire alphabet; global variable
-
         let buttonLetter = letters[i];
 
-        let button = new Button(buttonLetter);
         // Create a button in an object constructor
-        // console.log(button);
+        let button = new Button(buttonLetter);
+        document.getElementById(buttonLetter).style.backgroundColor='white';
 
-
+        // Add an event to the button once it is made.
+        // The event will print every time it is clicked.
         button.btn.addEventListener("click", function () {
-            // Add an event to the button once it is made.
-            // console.log(`You clicked on the ${button.btn.innerHTML} button.`)
-            // The event will print every time it is clicked.
+            // Hide scoreboard on button click
+            if (document.getElementById("scoreboard").style.display == "block") {
+                document.getElementById("scoreboard").style.display = "none";
+            }
 
             document.getElementById(buttonLetter).disabled = true;
-            // document.getElementById(buttonLetter).style.borderColor = 'white';
-            // document.getElementById(buttonLetter).style.backgroundColor='red';
-            // document.getElementById(buttonLetter).style.opacity='0.4';
-            // document.getElementById(buttonLetter).style.visibility = "hidden";
-            /*
-            MAYBE-WANT-TO-INCLUDE: It may be easier to give the elements all the same class.
+            document.getElementById(buttonLetter).style.borderColor = 'white';
+            document.getElementById(buttonLetter).style.backgroundColor='red';
+            document.getElementById(buttonLetter).style.opacity='0.4';
 
-            First, they all start off having the class: unclicked , meaning they're are still
-            active buttons.
 
-            Once they're clicked we should change the class to clicked. So any button with this
-            class will have it's style changed to hidden in the CSS file.
 
-            And when the game ends because the user won/lost we can then create a function to
-            disable all active buttons.
 
-            */
             arrayOfGuesses.push(buttonLetter);
 
-            compareLetterWithAnswer(buttonLetter);
             // This function is to check whether a correct letter was selected or not.
             // It will console right or wrong
+            compareLetterWithAnswer(buttonLetter);
 
             fillWords(buttonLetter);
 
@@ -136,9 +126,9 @@ function generateButton() {
 
             displayGuesses();
 
-            gameOver();
             // Whenever any button is clicked we want to check to make sure the user hasn't reached zero lives yet.
             // If the user reaches zero lives the game should end.
+            gameOver();
         })
     }
 }
@@ -173,40 +163,40 @@ function generateNextAnswer() {
 // Enable all hidden buttons
 function enableAllButtons() {
     let buttonLetter = "";
-    for (let i = 65; i < 90; i++) {
+    for (let i = 65; i < 91; i++) {
         buttonLetter = String.fromCharCode(i);
         document.getElementById(buttonLetter).disabled = false;
-        // document.getElementById(buttonLetter).style.backgroundColor='white';
-        // document.getElementById(buttonLetter).style.opacity='1.0';
-        // document.getElementById(buttonLetter).style.borderWidth='3px';
-        // document.getElementById(buttonLetter).style.borderColor='black';
+        document.getElementById(buttonLetter).style.backgroundColor='white';
+        document.getElementById(buttonLetter).style.opacity='1.0';
+        document.getElementById(buttonLetter).style.borderWidth='3px';
+        document.getElementById(buttonLetter).style.borderColor='black';
     }
 }
 
+// The dummyWord is all caps because all of the buttons are uppercased.
+// This can be changed how the group likes it with methods .toLowerCase()
 function compareLetterWithAnswer(letter) {
-    // The dummyWord is all caps because all of the buttons are uppercased. This can be changed how the group likes it with methods .toLowerCase()
-
+    // This checks the letter, but it also checks whether is it capitalized or not.
     if (!generatedAnswer.includes(letter)) {
-        // This checks the letter, but it also checks whether is it capitalized or not.
-        // console.log(">:) That was incorrect.");
+
 
         // If generatedAnswer does not have argument letter in it, it means the user guessed incorrectly.
-        subtractLife();
         // Decrease the amount of lives the user has left.
+        subtractLife();
 
-        loseScore();
         // Remove points from the user.
+        loseScore();
 
-        hangmanImage();
         //adds hangman
+        hangmanImage();
     } else {
         earnScore(letter);
-        // console.log("That was the right letter.");
 
     }
     document.getElementById("scoreID").innerHTML = score;
 }
 
+// Display all guesses used
 function displayGuesses() {
     // Exit function if array of guesses is empty
     if (arrayOfGuesses.length == 0) {
@@ -224,9 +214,9 @@ function displayGuesses() {
 }
 
 
+// This object constructer takes in one argument. alphaLetter -> string
+// The argument is the letter of this button.
 function Button(alphaLetter) {
-    // This object constructer takes in one argument. alphaLetter -> string
-    // The argument is the letter of this button.
     this.btn = document.createElement("button");
     this.btn.id = alphaLetter;
     this.btn.classList.add("btns");
@@ -244,9 +234,10 @@ function Button(alphaLetter) {
 // myFunction(x) // Call listener function at run time
 // x.addListener(myFunction) // Attach listener function on state changes
 
+
+// This is supposed the choose a random word.
+// This word is the one that users will be guessing
 function disPlayDefinition() {
-    // This is supposed the choose a random word.
-    // This word is the one that users will be guessing
     let i = Math.floor(Math.random() * arrayOfAnswers.length);  // i: 0~3 for the testing purpose
 
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
@@ -254,45 +245,36 @@ function disPlayDefinition() {
     return i;
 }
 
-
-
-
-
+// One argument; guess; a letter
+// If guess appears in generated answer than add one to score.
 function earnScore(guess) {
     /*
-    One argument; guess; a letter
-
-    If guess appears in generated answer than add one to score.
-
     TO-MAYBE-DO: This can be done better by placing all the correct letters in an array.
     Once we figure out how many times a letter appears in the array we remove it.
     This will prevent us having to go over the same length list every time.
-
     */
     for (let i = 0; i < generatedAnswer.length; i++) {
         if (generatedAnswer[i] == guess) {
             score++;
         }
     }
-
-    // TO-DO: Add an element the HTML that holds the current score of the user.
-
 }
 
+// Decrement score when wrong button is clicked
 function loseScore() {
     score--;
 }
 
-
+// If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
 function subtractLife() {
-    // If the user guesses the incorrect answer than run this function to adjust the amount of lives/chances the user has left.
-    lives -= 1;
     // Subtract lives by 1
-    document.getElementById("lifeID").innerHTML = lives;
-    // Change lifeID to represnt how many lives are left.
+    lives -= 1;
 
+    // Change lifeID to represnt how many lives are left.
+    document.getElementById("lifeID").innerHTML = lives;
 }
 
+// Check end game condition
 function gameOver() {
     if (lives === 0) {
         let name = "";
@@ -303,32 +285,26 @@ function gameOver() {
             }
         }
 
-        let message = name + ", your score is " + score + ".";
-        window.alert("Game Over! " + message);
-        // document.getElementById("guessID").innerHTML = "Game Over! " + endGameUserInfo;
-        document.getElementById("name").innerHTML = name;
-        console.log(name);
-        console.log(score);
-        // displayScoreboard();
-        saveScore();
-        updateScores();
-        disableButtons();
-        reset();
-    }
+    let message = name + ", your score is " + score + ".";
+    window.alert("Game Over! " + message);
+
+    document.getElementById("name").innerHTML = name;
+    displayScoreboard();
+    saveScore();
+    updateScores();
+    disableButtons();
+    reset();
 }
 
+// Function to disable all buttons.
 function disableButtons() {
-    // Function to disable all buttons.
     for (let i = 0; i < 26; i++) {
         // letters is an array of the alphabet
         document.getElementById(letters[i]).disabled = true;
     }
 }
 
-
-// TODO: reset button
-// TODO: let boundary for score - make sure it doesn't go down below zero
-
+// Reset button behaviour
 function reset() {
     arrayOfDefs = [];
     arrayOfAnswers = [];
@@ -358,7 +334,7 @@ function reset() {
     main();
 }
 
-
+// Display the scoreboard
 function displayScoreboard() {
     let board = document.getElementById("scoreboard");
     if (board.style.display === "block") {
@@ -387,7 +363,7 @@ function main() {
 
     arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
     // This is a list of all he possible words that can be chosen
-    console.log(arrayOfAnswers);
+
 
     answerChr = [];
 
@@ -403,12 +379,12 @@ function main() {
     generatedAnswer = arrayOfAnswers[Math.floor(Math.random() * arrayOfAnswers.length)];
     answerArray = [];
     hangmanImages = 0;
-    // console.log(answerArray)
+
 
     generateButton();
     changeDefinition(generatedAnswer);
     wordSpace(generatedAnswer);
-    // fillWords(generatedAnswer);
+
 }
 
 main();
