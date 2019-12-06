@@ -247,7 +247,6 @@ function Button(alphaLetter) {
 function disPlayDefinition() {
     // This is supposed the choose a random word.
     // This word is the one that users will be guessing
-
     let i = Math.floor(Math.random() * arrayOfAnswers.length);  // i: 0~3 for the testing purpose
 
     document.getElementById("wordDefID").innerHTML = arrayOfDefs[i];
