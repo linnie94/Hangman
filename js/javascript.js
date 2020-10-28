@@ -362,9 +362,8 @@ function main() {
         "CRYPT": "a room under a church, used in the past for burying people"
     };
 
-    arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
     // This is a list of all he possible words that can be chosen
-
+    arrayOfAnswers = ["TATTOO", "ELECTRICITY", "COMMITTEE", "SYSTEM", "KIOSK", "MEMENTO", "ZOMBIE", "OXYGEN", "FISHHOOK", "CRYPT"];
 
     answerChr = [];
 
@@ -373,7 +372,6 @@ function main() {
     arrayOfGuesses = [];
     userGuess = "";
     lives = 7;
-
 
     score = 0;
     // randomly picks a word from choices
